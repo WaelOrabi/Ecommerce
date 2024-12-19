@@ -17,3 +17,4 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.Infrastructure\obj\Debug\net9.0\refint\E
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.Infrastructure\obj\Debug\net9.0\Ecommerce.Infrastructure.pdb
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.Infrastructure\obj\Debug\net9.0\Ecommerce.Infrastructure.genruntimeconfig.cache
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.Infrastructure\obj\Debug\net9.0\ref\Ecommerce.Infrastructure.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.Infrastructure\obj\Debug\net9.0\Ecommerce.Infrastructure.sourcelink.json

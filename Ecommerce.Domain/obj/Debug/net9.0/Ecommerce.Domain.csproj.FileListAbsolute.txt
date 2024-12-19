@@ -9,3 +9,4 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.Domain\obj\Debug\net9.0\Ecommerce.Domain
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.Domain\obj\Debug\net9.0\refint\Ecommerce.Domain.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.Domain\obj\Debug\net9.0\Ecommerce.Domain.pdb
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.Domain\obj\Debug\net9.0\ref\Ecommerce.Domain.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.Domain\obj\Debug\net9.0\Ecommerce.Domain.sourcelink.json

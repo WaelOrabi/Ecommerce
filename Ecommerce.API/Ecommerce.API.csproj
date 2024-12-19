@@ -13,9 +13,6 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="Controllers\" />
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\Ecommerce.Infrastructure\Ecommerce.Infrastructure.csproj" />
 	</ItemGroup>
 

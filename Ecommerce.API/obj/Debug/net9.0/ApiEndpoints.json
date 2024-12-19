@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AccountController",
+    "Method": "Get",
+    "RelativePath": "api/Account/GetAllAcounts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
