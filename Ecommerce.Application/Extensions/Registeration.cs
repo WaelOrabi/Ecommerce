@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Services;
 using Application.Services.Interfaces;
+using Ecommerce.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Extensions
@@ -11,6 +12,7 @@ namespace Application.Extensions
             
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IRoleService, RoleService>();
             return services;
         }
     }

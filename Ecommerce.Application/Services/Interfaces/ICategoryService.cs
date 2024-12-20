@@ -13,7 +13,7 @@ namespace Application.Services.Interfaces
         Task<Category>GetById(int id);
         Task<IEnumerable<Category>> GetAll();
         Task<Category>Add(CategoryRequest category);
-        Task<int>Update(CategoryRequest category);
+        Task<Category>Update(CategoryRequest category);
         Task<int>Delete(int id);
     }
 }

@@ -39,7 +39,7 @@ namespace Ecommerce.API.Controllers
             return Ok(await _productService.Add(productRequest));
 
         }
-        [HttpPost("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> UpdateProduct(int id)
         {
 

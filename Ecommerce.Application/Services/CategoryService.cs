@@ -48,7 +48,7 @@ namespace Application.Services
             return await unitOfWork.CategoryRepository.GetByIdAsync(id);
         }
 
-        public async Task<int> Update(CategoryRequest categoryRequest)
+        public async Task<Category> Update(CategoryRequest categoryRequest)
         {
             if (categoryRequest == null)
                 throw new ArgumentNullException();
@@ -60,7 +60,7 @@ namespace Application.Services
             };
             var result =  unitOfWork.CategoryRepository.Update(category);
             await unitOfWork.CompleteAsync();
-            return category.Id;
+            return category;
         }
     }
 }

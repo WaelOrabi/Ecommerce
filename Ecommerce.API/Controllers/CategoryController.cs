@@ -34,7 +34,7 @@ namespace Ecommerce.API.Controllers
         {
             return Ok(await categoryService.GetAll());
         }
-        [HttpGet("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             return Ok(await categoryService.Delete(id));
