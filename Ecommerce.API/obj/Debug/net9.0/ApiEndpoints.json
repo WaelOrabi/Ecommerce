@@ -1,5 +1,85 @@
 [
   {
+    "ContainingType": "Ecommerce.API.Controllers.AddressController",
+    "Method": "AddAddress",
+    "RelativePath": "api/Address/Add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addressRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.AddressRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AddressController",
+    "Method": "DeleteAddress",
+    "RelativePath": "api/Address/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AddressController",
+    "Method": "Get",
+    "RelativePath": "api/Address/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AddressController",
+    "Method": "GetAll",
+    "RelativePath": "api/Address/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AddressController",
+    "Method": "UpdateAddress",
+    "RelativePath": "api/Address/Update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addressRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.AddressRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce.API.Controllers.CategoryController",
     "Method": "AddCategory",
     "RelativePath": "api/Category/Add",

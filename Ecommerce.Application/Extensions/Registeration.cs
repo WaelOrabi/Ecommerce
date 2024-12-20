@@ -13,6 +13,7 @@ namespace Application.Extensions
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IAddressService, AddressService>();
             return services;
         }
     }
