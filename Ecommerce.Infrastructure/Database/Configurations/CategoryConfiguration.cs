@@ -16,7 +16,7 @@ namespace Ecommerce.Infrastructure.Database.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(30).IsRequired(true);
             builder.Property(x=>x.Description).HasMaxLength(100).IsRequired(false);
-            builder.HasMany(x => x.Products).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId).IsRequired(false);
+            builder.HasMany(x=>x.Products).WithOne(x=>x.Category).HasForeignKey(x => x.CategoryId).IsRequired(false);
         }
     }
 }

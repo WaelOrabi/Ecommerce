@@ -60,6 +60,23 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Http.Features/5.0.17": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "5.0.1",
+          "System.IO.Pipelines": "5.0.2"
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
         "type": "package",
         "compile": {
@@ -1365,7 +1382,7 @@
       "System.IO.Pipelines/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/_._": {
+          "lib/net7.0/System.IO.Pipelines.dll": {
             "related": ".xml"
           }
         },
@@ -1720,22 +1737,26 @@
           }
         }
       },
-      "Application/1.0.0": {
+      "Ecommerce.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "Ecommerce.Domain": "1.0.0"
+          "Ecommerce.Domain": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0"
         },
         "compile": {
-          "bin/placeholder/Application.dll": {}
+          "bin/placeholder/Ecommerce.Application.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Application.dll": {}
+          "bin/placeholder/Ecommerce.Application.dll": {}
         }
       },
       "Ecommerce.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17"
+        },
         "compile": {
           "bin/placeholder/Ecommerce.Domain.dll": {}
         },
@@ -1800,6 +1821,25 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Features/5.0.17": {
+      "sha512": "3jG2xS+dx8DDCGV/F+STdPTg89lX3ao3dF/VEPvJaz3wzBIjuadipTtYNEXDIVuOPZwb6jdmhrX9jkzOIBm5cw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.features/5.0.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/net461/Microsoft.AspNetCore.Http.Features.xml",
+        "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/net5.0/Microsoft.AspNetCore.Http.Features.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
+        "microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
@@ -5016,10 +5056,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Application/1.0.0": {
+    "Ecommerce.Application/1.0.0": {
       "type": "project",
-      "path": "../Application/Application.csproj",
-      "msbuildProject": "../Application/Application.csproj"
+      "path": "../Ecommerce.Application/Ecommerce.Application.csproj",
+      "msbuildProject": "../Ecommerce.Application/Ecommerce.Application.csproj"
     },
     "Ecommerce.Domain/1.0.0": {
       "type": "project",
@@ -5029,7 +5069,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Application >= 1.0.0",
+      "Ecommerce.Application >= 1.0.0",
       "Ecommerce.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0",
@@ -5069,8 +5109,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\HP\\Desktop\\Ecommerce\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\HP\\Desktop\\Ecommerce\\Application\\Application.csproj"
+            "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Application\\Ecommerce.Application.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Application\\Ecommerce.Application.csproj"
             },
             "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Domain\\Ecommerce.Domain.csproj": {
               "projectPath": "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Domain\\Ecommerce.Domain.csproj"

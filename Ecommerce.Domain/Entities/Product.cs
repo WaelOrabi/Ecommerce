@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,7 +21,7 @@ namespace Ecommerce.Domain.Entities
         public decimal Price { get; set; }
 
         public DateTime CreateAt { get; set; }
-        public List<string> ListImages { get; set; } 
+        public byte[] Image { get; set; } 
 
  
         public int CategoryId { get; set; }

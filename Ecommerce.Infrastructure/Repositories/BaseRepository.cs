@@ -22,8 +22,8 @@ namespace Ecommerce.Infrastructure.Repositories
         public async Task DeleteByIdAsync(int id)
         {
            TEntity result= await appDbContext.Set<TEntity>().FindAsync(id);
-           appDbContext.Set<TEntity>().Remove(result);
-
+          var result2= appDbContext.Set<TEntity>().Remove(result);
+      
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
@@ -36,7 +36,7 @@ namespace Ecommerce.Infrastructure.Repositories
             return await appDbContext.Set<TEntity>().FindAsync(id);
         }
 
-        public TEntity UpdateAsync(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
              appDbContext.Set<TEntity>().Update(entity);
             return entity;

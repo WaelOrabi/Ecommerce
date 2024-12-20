@@ -185,10 +185,9 @@ namespace Ecommerce.Infrastructure.Database.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.PrimitiveCollection<string>("ListImages")
+                    b.Property<byte[]>("Image")
                         .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
