@@ -35,10 +35,6 @@ namespace Ecommerce.Infrastructure
 
         public IAddressRepository AddressRepository { get; private set; }
 
-        public int Complete()
-        {
-            return _dbContext.SaveChanges();
-        }
 
         public async Task CompleteAsync()
         {

@@ -9,6 +9,6 @@ namespace Application.Interfaces
 {
     public interface IAccountRepository:IBaseRepository<Account>
     {
-        Task<IEnumerable<Account>> SpicalAccountGetAll();
+       
     }
 }

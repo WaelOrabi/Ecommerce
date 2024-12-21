@@ -14,6 +14,7 @@ namespace Application.Extensions
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IAccountService, AccountService>();
             return services;
         }
     }

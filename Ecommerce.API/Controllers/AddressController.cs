@@ -1,6 +1,5 @@
 ﻿using Application.Services.Interfaces;
 using Ecommerce.Domain.ServiceModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers

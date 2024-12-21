@@ -19,7 +19,7 @@ namespace Ecommerce.Application.Services
             PostalCode = addressRequest.PostalCode,
             Country = addressRequest.Country,
             State = addressRequest.State,
-
+            
             };
             var result= await unitOfWork.AddressRepository.AddAsync(address);
             await unitOfWork.CompleteAsync();
@@ -49,10 +49,10 @@ namespace Ecommerce.Application.Services
         public async Task<int> Delete(int id)
         {
       
-            var entity = await unitOfWork.AddressRepository.GetByIdAsync(id);
+      
             await unitOfWork.AddressRepository.DeleteByIdAsync(id);
             await unitOfWork.CompleteAsync();
-            return entity.Id;
+            return id;
         }
 
         public async Task<IEnumerable<Address>> GetAll()

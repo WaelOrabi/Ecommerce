@@ -30,10 +30,10 @@ namespace Application.Services
         {
             if (id <0)
                 throw new ArgumentOutOfRangeException();
-            var entity=await unitOfWork.CategoryRepository.GetByIdAsync(id);
+
             await unitOfWork.CategoryRepository.DeleteByIdAsync(id);
             await unitOfWork.CompleteAsync();
-            return entity.Id;
+            return id;
         }
 
         public async Task<IEnumerable<Category>> GetAll()
