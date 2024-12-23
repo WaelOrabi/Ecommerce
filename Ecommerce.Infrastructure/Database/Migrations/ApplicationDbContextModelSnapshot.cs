@@ -34,11 +34,13 @@ namespace Ecommerce.Infrastructure.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("BirthDate")
+                        .HasMaxLength(10)
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -49,6 +51,11 @@ namespace Ecommerce.Infrastructure.Database.Migrations
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -64,6 +71,19 @@ namespace Ecommerce.Infrastructure.Database.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("Ecommerce.Domain.Entities.AccountPermission", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "PermissionId");
+
+                    b.ToTable("AccountPermission", (string)null);
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Address", b =>

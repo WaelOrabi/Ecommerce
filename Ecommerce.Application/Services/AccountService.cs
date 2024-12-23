@@ -1,17 +1,20 @@
 ﻿using Application.Interfaces;
 using Application.Services.Interfaces;
+using Ecommerce.Application.Extensions;
 using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.ServiceModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
-
 namespace Ecommerce.Application.Services
 {
-    public class AccountService(IUnitOfWork unitOfWork) : IAccountService
+    public class AccountService(IUnitOfWork unitOfWork, TokenProvider tokenProvider) : IAccountService
     {
+        private readonly IUnitOfWork _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+        private readonly TokenProvider _tokenProvider = tokenProvider;
+
         public async Task<Account> Add(AccountRequest accountRequest)
         {
             if (accountRequest == null) {
@@ -24,11 +27,12 @@ namespace Ecommerce.Application.Services
             Email= accountRequest.Email,
             PhoneNumber=accountRequest.PhoneNumber,
             BirthDate=accountRequest.BirthDate,
+            Password=accountRequest.Password,
             RoleId=accountRequest.RoleId,
             AddressId=accountRequest.AddressId,
             };
-           var result=await unitOfWork.AccountRepository.AddAsync(account);
-            await unitOfWork.CompleteAsync();
+           var result=await _unitOfWork.AccountRepository.AddAsync(account);
+            await _unitOfWork.CompleteAsync();
             return result;
         }
         public async Task<Account> Update(AccountRequest accountRequest)
@@ -45,31 +49,43 @@ namespace Ecommerce.Application.Services
                 Email = accountRequest.Email,
                 PhoneNumber = accountRequest.PhoneNumber,
                 BirthDate = accountRequest.BirthDate,
+                Password = accountRequest.Password,
                 RoleId = accountRequest.RoleId,
                 AddressId = accountRequest.AddressId,
             };
-            var result =  unitOfWork.AccountRepository.Update(account);
-            await unitOfWork.CompleteAsync();
+            var result = _unitOfWork.AccountRepository.Update(account);
+            await _unitOfWork.CompleteAsync();
             return result;
         }
         public async Task<int> Delete(int id)
         {
          
-            await unitOfWork.AccountRepository.DeleteByIdAsync(id);
-            await unitOfWork.CompleteAsync();
+            await _unitOfWork.AccountRepository.DeleteByIdAsync(id);
+            await _unitOfWork.CompleteAsync();
             return id;
         }
 
         public async Task<IEnumerable<Account>> GetAll()
         {
-            return await unitOfWork.AccountRepository.GetAllAsync();
+            return await _unitOfWork.AccountRepository.GetAllAsync();
         }
 
         public async Task<Account> GetById(int id)
         {
-            return await unitOfWork.AccountRepository.GetByIdAsync(id);
+            return await _unitOfWork.AccountRepository.GetByIdAsync(id);
         }
 
- 
+        public async Task<string> Auth(AuthAccount authAccount)
+        {
+            var account = await _unitOfWork.AccountRepository.Auth(authAccount);
+            if (account == null)
+            {
+                return "Account not found";
+            }
+
+
+            return _tokenProvider.Create(account);
+        }
+
     }
 }

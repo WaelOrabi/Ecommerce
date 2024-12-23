@@ -1,4 +1,6 @@
-﻿using Ecommerce.Domain.Entities;
+﻿using Ecommerce.Domain;
+using Ecommerce.Domain.Entities;
+using Ecommerce.Domain.ServiceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace Application.Interfaces
 {
     public interface IAccountRepository:IBaseRepository<Account>
     {
-       
+       public  Task<Account> Auth(AuthAccount authAccount);
+        public Task<bool> HasPermission(int userId, Permission permission);
     }
 }

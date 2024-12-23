@@ -138,7 +138,6 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.Gener
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.AssemblyInfoInputs.cache
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.AssemblyInfo.cs
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.csproj.CoreCompileInputs.cache
-C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\scopedcss\bundle\Ecommerce.API.styles.css
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\staticwebassets.build.json
@@ -163,3 +162,5 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.Applicati
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.Application.pdb
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.MvcApplicationPartsAssemblyInfo.cs

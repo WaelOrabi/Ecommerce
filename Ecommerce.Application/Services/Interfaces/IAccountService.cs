@@ -13,6 +13,7 @@ namespace Application.Services.Interfaces
         Task<Account> GetById(int id);
         Task<IEnumerable<Account>> GetAll();
         Task<Account>Add(AccountRequest accountRequest);
+        Task<string> Auth(AuthAccount authAccount);
         Task<Account>Update(AccountRequest accountRequest); 
         Task<int>Delete(int id);
 

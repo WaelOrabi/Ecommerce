@@ -1,6 +1,7 @@
 ﻿using Application.Services.Interfaces;
 using Ecommerce.Domain.ServiceModel;
-using Ecommerce.Infrastructure.Repositories;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace Ecommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+  
     public class AccountController: ControllerBase
     {
         private readonly IAccountService _accountService;
@@ -35,7 +37,18 @@ namespace Ecommerce.API.Controllers
         {
             return Ok(await _accountService.Update(accountRequest));
         }
+        [HttpPost("Auth")]
+        public async Task<IActionResult> Auth(AuthAccount authAccount)
+        {
+            var authResult = await _accountService.Auth(authAccount);
+            if (authResult == "Account not found") 
+            {
+                return Unauthorized();
+            }
+            return Ok(authResult);
+        }
         [HttpDelete("Delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult>Delete(int id)
         {
             return Ok(await _accountService.Delete(id));

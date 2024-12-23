@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "Ecommerce.API.Controllers.AccountController",
+    "Method": "Auth",
+    "RelativePath": "api/Account/Auth",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authAccount",
+        "Type": "Ecommerce.Domain.ServiceModel.AuthAccount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AccountController",
     "Method": "Delete",
     "RelativePath": "api/Account/Delete/{id}",
     "HttpMethod": "DELETE",

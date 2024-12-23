@@ -26,6 +26,7 @@ namespace Ecommerce.Infrastructure.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<AccountPermission>().ToTable("AccountPermission").HasKey(o => new { o.UserId, o.PermissionId });
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
    
