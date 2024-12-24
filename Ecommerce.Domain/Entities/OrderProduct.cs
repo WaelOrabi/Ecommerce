@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Ecommerce.Domain.Entities
@@ -11,6 +12,7 @@ namespace Ecommerce.Domain.Entities
     {
       
         public int OrderId { get; set; }
+        [JsonIgnore]
         public Order Order { get; set; }
 
   

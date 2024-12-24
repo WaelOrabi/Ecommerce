@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces;
 using Ecommerce.Domain;
 using Ecommerce.Domain.Entities;
-using Ecommerce.Domain.ServiceModel;
+using Ecommerce.Domain.ServiceModel.Requests;
 using Ecommerce.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 

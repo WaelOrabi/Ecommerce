@@ -1,6 +1,5 @@
 ﻿using Application.Services.Interfaces;
-using Ecommerce.Domain.ServiceModel;
-
+using Ecommerce.Domain.ServiceModel.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +47,7 @@ namespace Ecommerce.API.Controllers
             return Ok(authResult);
         }
         [HttpDelete("Delete/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admins")]
         public async Task<IActionResult>Delete(int id)
         {
             return Ok(await _accountService.Delete(id));

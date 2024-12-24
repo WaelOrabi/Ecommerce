@@ -2,7 +2,7 @@
 using Application.Services.Interfaces;
 using Ecommerce.Application.Extensions;
 using Ecommerce.Domain.Entities;
-using Ecommerce.Domain.ServiceModel;
+using Ecommerce.Domain.ServiceModel.Requests;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

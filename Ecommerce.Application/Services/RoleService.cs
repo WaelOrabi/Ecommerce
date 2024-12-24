@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Services.Interfaces;
 using Ecommerce.Domain.Entities;
-using Ecommerce.Domain.ServiceModel;
+using Ecommerce.Domain.ServiceModel.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using Application.Services.Interfaces;
-using Ecommerce.Domain.ServiceModel;
+using Ecommerce.Domain.ServiceModel.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,19 +25,19 @@ namespace Ecommerce.API.Controllers
 
         }
         [HttpPost("Add")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admins")]
         public async Task<IActionResult>AddAddress(AddressRequest addressRequest)
         {
             return Ok(await _addressService.Add(addressRequest));
         }
         [HttpPost("Update")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admins")]
         public async Task<IActionResult>UpdateAddress(AddressRequest addressRequest)
         {
             return Ok(await _addressService.Update(addressRequest));
         }
         [HttpDelete("Delete/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admins")]
         public async Task<IActionResult> DeleteAddress(int id)
         {
             return Ok(await _addressService.Delete(id));

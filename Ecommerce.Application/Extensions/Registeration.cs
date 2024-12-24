@@ -11,11 +11,12 @@ namespace Application.Extensions
     {
         public static IServiceCollection RegisterServices(this IServiceCollection services) { 
             
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IRoleService, RoleService>();
-            services.AddScoped<IAddressService, AddressService>();
-            services.AddScoped<IAccountService, AccountService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IOrderService, OrderService>();
             return services;
         }
         public static IServiceCollection AddSwaggerGenWithAuth(this IServiceCollection services) {

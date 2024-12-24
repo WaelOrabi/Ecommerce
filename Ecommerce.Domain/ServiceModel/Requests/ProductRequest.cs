@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Domain.ServiceModel
+namespace Ecommerce.Domain.ServiceModel.Requests
 {
     public class ProductRequest
     {

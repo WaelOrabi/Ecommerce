@@ -23,8 +23,6 @@ namespace Ecommerce.Application.Extensions
                 new Claim(ClaimTypes.Email, account.Email),
                     new Claim(ClaimTypes.Name, account.FirstName+account.LastName),
                     new Claim(ClaimTypes.Role,account.Role.Name),
-                    new Claim("phoneNumber",account.PhoneNumber),
-                    new Claim(ClaimTypes.DateOfBirth,Convert.ToString(account.BirthDate))
                ]),
             Expires=DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("Jwt:Lifetime")),
             SigningCredentials = credentials,

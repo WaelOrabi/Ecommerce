@@ -14,8 +14,9 @@ var config = builder.Configuration;
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGenWithAuth();
-// Configure Authentication and JWT Bearer
 
+
+// Configure Authentication and JWT Bearer
 builder.Services.AddSingleton<TokenProvider>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -36,31 +37,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddAuthorization(options => {
-    options.AddPolicy("SuperUsersOnly", builder =>
+ 
+    options.AddPolicy("Admins", builder =>
     {
-        builder.RequireRole("SuperUser");
+        builder.RequireRole("Admin");
        
-    });
-    options.AddPolicy("phoneNumber", builder => {
-        builder.RequireClaim("phoneNumber", "0981078432");
-    });
-    options.AddPolicy("AgeGreaterThan25", builder =>
-    {
-        builder.RequireAssertion(context =>
-        {
-            var birthDateClaim = context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.DateOfBirth);
-            if (birthDateClaim == null)
-            {
-                return false; 
-            }
-
-            if (!DateTime.TryParse(birthDateClaim.Value, out var birthDate))
-            {
-                return false; 
-            }
-
-            return DateTime.Today.Year - birthDate.Year >= 25; 
-        });
     });
 });
 
