@@ -1,9 +1,6 @@
-﻿using Application.Interfaces;
-using Application.Services.Interfaces;
-using Ecommerce.Domain.Entities;
+﻿using Application.Services.Interfaces;
 using Ecommerce.Domain.ServiceModel.Requests;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers
@@ -13,19 +10,22 @@ namespace Ecommerce.API.Controllers
     [Authorize]
     public class CategoryController(ICategoryService categoryService) : ControllerBase
     {
-   
+
 
         [HttpPost("Add")]
-        [Authorize(Policy = "Admins")]
-        public async Task<IActionResult> AddCategory([FromBody]CategoryRequest categoryRequest)
+        [Authorize(policy: "Admins")]
+        public async Task<IActionResult> AddCategory([FromBody] CategoryRequestDTO categoryRequest)
         {
             return Ok(await categoryService.Add(categoryRequest));
         }
-        [HttpPost("Update")]
-        [Authorize(Policy = "Admins")]
-        public async Task<IActionResult> UpdateCategory([FromBody] CategoryRequest categoryRequest)
+        [HttpPut("Update/{id}")]
+        [Authorize(policy: "Admins")]
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryRequestDTO categoryRequest)
         {
-            return Ok(await categoryService.Update(categoryRequest));
+            var result = await categoryService.Update(categoryRequest, id);
+            if (result == null)
+                return NotFound();
+            return Ok(result);
         }
         [HttpGet("Get/{id}")]
         public async Task<IActionResult> GetCategory(int id)
@@ -39,7 +39,7 @@ namespace Ecommerce.API.Controllers
             return Ok(await categoryService.GetAll());
         }
         [HttpDelete("Delete/{id}")]
-        [Authorize(Policy = "Admins")]
+        [Authorize(policy: "Admins")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             return Ok(await categoryService.Delete(id));

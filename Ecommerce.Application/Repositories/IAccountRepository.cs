@@ -11,7 +11,7 @@ namespace Application.Interfaces
 {
     public interface IAccountRepository:IBaseRepository<Account>
     {
-       public  Task<Account> Auth(AuthAccount authAccount);
+       public  Task<Account> Auth(AuthAccountRequestDTO authAccount);
         public Task<bool> HasPermission(int userId, Permission permission);
     }
 }

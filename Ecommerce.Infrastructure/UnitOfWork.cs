@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Repositories;
+using Ecommerce.Application.Repositories;
 using Ecommerce.Infrastructure.Database;
 using Ecommerce.Infrastructure.Repositories;
 
@@ -14,12 +15,13 @@ namespace Ecommerce.Infrastructure
             AccountRepository = new AccountRepository(_dbContext);
             AddressRepository = new AddressRepository(_dbContext);
             CategoryRepository = new CategoryRepository(_dbContext);
-            OrderRepository =new OrderRepository(_dbContext);
+            OrderRepository = new OrderRepository(_dbContext);
             ProductRepository = new ProductRepository(_dbContext);
             ReviewRepository = new ReviewRepository(_dbContext);
-            RoleRepository=new RoleRepository(_dbContext);
+            RoleRepository = new RoleRepository(_dbContext);
+            CartRepository = new CartRepository(_dbContext);
+            CartItemRepository = new CartItemRepository(_dbContext);
 
-            
         }
         public IAccountRepository AccountRepository { get; private set; }
 
@@ -35,10 +37,14 @@ namespace Ecommerce.Infrastructure
 
         public IAddressRepository AddressRepository { get; private set; }
 
+        public ICartRepository CartRepository { get; private set; }
+
+        public ICartItemRepository CartItemRepository { get; private set; }
+
 
         public async Task CompleteAsync()
         {
-             await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
         public void Dispose()

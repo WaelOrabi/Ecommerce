@@ -1,35 +1,39 @@
 ﻿using Application.Services;
 using Application.Services.Interfaces;
 using Ecommerce.Application.Services;
+using Ecommerce.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 namespace Application.Extensions
 {
     public static class Registeration
     {
-        public static IServiceCollection RegisterServices(this IServiceCollection services) { 
-            
+        public static IServiceCollection RegisterServices(this IServiceCollection services)
+        {
+
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IAddressService, AddressService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<ICartService, CartService>();
+
             return services;
         }
-        public static IServiceCollection AddSwaggerGenWithAuth(this IServiceCollection services) {
+        public static IServiceCollection AddSwaggerGenWithAuth(this IServiceCollection services)
+        {
             services.AddSwaggerGen(options =>
             {
                 var securityScheme = new OpenApiSecurityScheme
                 {
-                    Name="JWT Authentication",
-                    Description="Enter your JWT token in this field",
-                    In=ParameterLocation.Header,
-                    Type=SecuritySchemeType.Http,
-                    Scheme=JwtBearerDefaults.AuthenticationScheme,
-                    BearerFormat="JWT"
+                    Name = "JWT Authentication",
+                    Description = "Enter your JWT token in this field",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme,
+                    BearerFormat = "JWT"
                 };
                 options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, securityScheme);
                 var securityRequirement = new OpenApiSecurityRequirement

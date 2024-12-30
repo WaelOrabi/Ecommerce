@@ -120,6 +120,51 @@ namespace Ecommerce.Infrastructure.Database.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("Ecommerce.Domain.Entities.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("Ecommerce.Domain.Entities.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartItems");
+                });
+
             modelBuilder.Entity("Ecommerce.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -295,6 +340,33 @@ namespace Ecommerce.Infrastructure.Database.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("Ecommerce.Domain.Entities.Cart", b =>
+                {
+                    b.HasOne("Ecommerce.Domain.Entities.Account", "Account")
+                        .WithOne("Cart")
+                        .HasForeignKey("Ecommerce.Domain.Entities.Cart", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Ecommerce.Domain.Entities.CartItem", b =>
+                {
+                    b.HasOne("Ecommerce.Domain.Entities.Cart", "Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Ecommerce.Domain.Entities.Product", "Product")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Ecommerce.Domain.Entities.Order", b =>
                 {
                     b.HasOne("Ecommerce.Domain.Entities.Account", "Account")
@@ -349,6 +421,9 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Account", b =>
                 {
+                    b.Navigation("Cart")
+                        .IsRequired();
+
                     b.Navigation("Orders");
 
                     b.Navigation("Reviews");
@@ -357,6 +432,11 @@ namespace Ecommerce.Infrastructure.Database.Migrations
             modelBuilder.Entity("Ecommerce.Domain.Entities.Address", b =>
                 {
                     b.Navigation("Accounts");
+                });
+
+            modelBuilder.Entity("Ecommerce.Domain.Entities.Cart", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Category", b =>
@@ -371,6 +451,8 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Product", b =>
                 {
+                    b.Navigation("CartItems");
+
                     b.Navigation("OrderProducts");
 
                     b.Navigation("Reviews");

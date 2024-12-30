@@ -1,11 +1,6 @@
 ﻿using Application.Interfaces;
 using Ecommerce.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecommerce.Infrastructure.Repositories
 {
@@ -21,9 +16,9 @@ namespace Ecommerce.Infrastructure.Repositories
 
         public async Task DeleteByIdAsync(int id)
         {
-           TEntity result= await appDbContext.Set<TEntity>().FindAsync(id);
-          var result2= appDbContext.Set<TEntity>().Remove(result);
-      
+            TEntity result = await appDbContext.Set<TEntity>().FindAsync(id);
+            var result2 = appDbContext.Set<TEntity>().Remove(result);
+
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
@@ -38,7 +33,7 @@ namespace Ecommerce.Infrastructure.Repositories
 
         public TEntity Update(TEntity entity)
         {
-             appDbContext.Set<TEntity>().Update(entity);
+            appDbContext.Set<TEntity>().Update(entity);
             return entity;
         }
     }

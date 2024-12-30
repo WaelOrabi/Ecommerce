@@ -10,6 +10,7 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Azure.Core.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Azure.Identity.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Humanizer.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.Build.Locator.dll
@@ -164,3 +165,4 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\refint\Ecommerce.AP
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.pdb
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.genruntimeconfig.cache
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\ref\Ecommerce.API.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\AutoMapper.dll

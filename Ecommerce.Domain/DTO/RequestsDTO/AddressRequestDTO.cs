@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ecommerce.Domain.ServiceModel.Requests
+﻿namespace Ecommerce.Domain.ServiceModel.Requests
 {
-    public class AddressRequest
+    public class AddressRequestDTO
     {
-        public int Id { get; set; }
+
         public string Street { get; set; }
         public string? City { get; set; }
         public string? State { get; set; }

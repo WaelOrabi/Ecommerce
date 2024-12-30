@@ -9,7 +9,7 @@ namespace Ecommerce.Infrastructure.Repositories
 {
     public class AccountRepository(ApplicationDbContext context) : BaseRepository<Account>(context),IAccountRepository
     {
-        public async Task<Account> Auth(AuthAccount authAccount)
+        public async Task<Account> Auth(AuthAccountRequestDTO authAccount)
         {
             var account = await context.Set<Account>()
           .Include(a => a.Role) 

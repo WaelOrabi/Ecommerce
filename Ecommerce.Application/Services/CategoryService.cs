@@ -1,34 +1,29 @@
 ﻿using Application.Interfaces;
 using Application.Services.Interfaces;
+using AutoMapper;
+using Ecommerce.Domain.DTO.ResponsesDTO;
 using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.ServiceModel.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class CategoryService(IUnitOfWork unitOfWork) : ICategoryService
+    public class CategoryService(IUnitOfWork unitOfWork, IMapper mapper) : ICategoryService
     {
-        public async Task<Category> Add(CategoryRequest categoryRequest)
+        private readonly IMapper _mapper = mapper;
+
+        public async Task<CategoryResponse> Add(CategoryRequestDTO categoryRequest)
         {
             if (categoryRequest == null)
                 throw new ArgumentNullException();
-            Category category = new Category{ 
-            Id= categoryRequest.Id,
-            Name= categoryRequest.Name,
-            Description= categoryRequest.Description,
-            };
-            var result=await unitOfWork.CategoryRepository.AddAsync(category);
+            Category category = _mapper.Map<Category>(categoryRequest);
+            var result = await unitOfWork.CategoryRepository.AddAsync(category);
             await unitOfWork.CompleteAsync();
-            return result;
+            return _mapper.Map<CategoryResponse>(result);
         }
 
         public async Task<int> Delete(int id)
         {
-            if (id <0)
+            if (id < 0)
                 throw new ArgumentOutOfRangeException();
 
             await unitOfWork.CategoryRepository.DeleteByIdAsync(id);
@@ -36,31 +31,29 @@ namespace Application.Services
             return id;
         }
 
-        public async Task<IEnumerable<Category>> GetAll()
+        public async Task<IEnumerable<CategoryResponse>> GetAll()
         {
-           return await unitOfWork.CategoryRepository.GetAllAsync();
+            var result = await unitOfWork.CategoryRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<CategoryResponse>>(result);
         }
 
-        public async Task<Category> GetById(int id)
+        public async Task<CategoryResponse> GetById(int id)
         {
             if (id < 0)
                 throw new ArgumentOutOfRangeException();
-            return await unitOfWork.CategoryRepository.GetByIdAsync(id);
+            var result = await unitOfWork.CategoryRepository.GetByIdAsync(id);
+            return _mapper.Map<CategoryResponse>(result);
         }
 
-        public async Task<Category> Update(CategoryRequest categoryRequest)
+        public async Task<CategoryResponse?> Update(CategoryRequestDTO categoryRequest, int id)
         {
-            if (categoryRequest == null)
-                throw new ArgumentNullException();
-            Category category = new Category
-            {
-                Id = categoryRequest.Id,
-                Name = categoryRequest.Name,
-                Description = categoryRequest.Description,
-            };
-            var result =  unitOfWork.CategoryRepository.Update(category);
+            var category = await unitOfWork.CategoryRepository.GetByIdAsync(id);
+            if (category == null)
+                return null;
+            category = _mapper.Map<Category>(categoryRequest);
+            var result = unitOfWork.CategoryRepository.Update(category);
             await unitOfWork.CompleteAsync();
-            return category;
+            return _mapper.Map<CategoryResponse>(result); ;
         }
     }
 }

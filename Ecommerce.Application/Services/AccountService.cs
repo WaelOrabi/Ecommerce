@@ -1,81 +1,62 @@
 ﻿using Application.Interfaces;
 using Application.Services.Interfaces;
+using AutoMapper;
 using Ecommerce.Application.Extensions;
+using Ecommerce.Domain.DTO.Responses;
 using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.ServiceModel.Requests;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 namespace Ecommerce.Application.Services
 {
-    public class AccountService(IUnitOfWork unitOfWork, TokenProvider tokenProvider) : IAccountService
+    public class AccountService(IUnitOfWork unitOfWork, TokenProvider tokenProvider, IMapper mapper) : IAccountService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         private readonly TokenProvider _tokenProvider = tokenProvider;
+        private readonly IMapper _mapper = mapper;
 
-        public async Task<Account> Add(AccountRequest accountRequest)
+        public async Task<AccountResponse> Add(AccountRequest accountRequest)
         {
-            if (accountRequest == null) {
-                throw new ArgumentNullException();
-            }
-            Account account = new Account { 
-            Id = accountRequest.Id,
-            FirstName = accountRequest.FirstName,
-            LastName = accountRequest.LastName,
-            Email= accountRequest.Email,
-            PhoneNumber=accountRequest.PhoneNumber,
-            BirthDate=accountRequest.BirthDate,
-            Password=accountRequest.Password,
-            RoleId=accountRequest.RoleId,
-            AddressId=accountRequest.AddressId,
-            };
-           var result=await _unitOfWork.AccountRepository.AddAsync(account);
+
+
+            Account account = _mapper.Map<Account>(accountRequest);
+            var result = await _unitOfWork.AccountRepository.AddAsync(account);
             await _unitOfWork.CompleteAsync();
-            return result;
+            return _mapper.Map<AccountResponse>(result);
         }
-        public async Task<Account> Update(AccountRequest accountRequest)
+        public async Task<AccountResponse?> Update(AccountRequest accountRequest, int id)
         {
-            if (accountRequest == null)
+            var account = await unitOfWork.AccountRepository.GetByIdAsync(id);
+            if (account == null)
             {
-                throw new ArgumentNullException();
+                return null;
             }
-            Account account = new Account
-            {
-                Id = accountRequest.Id,
-                FirstName = accountRequest.FirstName,
-                LastName = accountRequest.LastName,
-                Email = accountRequest.Email,
-                PhoneNumber = accountRequest.PhoneNumber,
-                BirthDate = accountRequest.BirthDate,
-                Password = accountRequest.Password,
-                RoleId = accountRequest.RoleId,
-                AddressId = accountRequest.AddressId,
-            };
+
+
+            account = _mapper.Map<Account>(accountRequest);
             var result = _unitOfWork.AccountRepository.Update(account);
             await _unitOfWork.CompleteAsync();
-            return result;
+            return _mapper.Map<AccountResponse>(result); ;
         }
         public async Task<int> Delete(int id)
         {
-         
+
             await _unitOfWork.AccountRepository.DeleteByIdAsync(id);
             await _unitOfWork.CompleteAsync();
             return id;
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public async Task<IEnumerable<AccountResponse>> GetAll()
         {
-            return await _unitOfWork.AccountRepository.GetAllAsync();
+            var result = await _unitOfWork.AccountRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<AccountResponse>>(result);
         }
 
-        public async Task<Account> GetById(int id)
+        public async Task<AccountResponse> GetById(int id)
         {
-            return await _unitOfWork.AccountRepository.GetByIdAsync(id);
+            var result = await _unitOfWork.AccountRepository.GetByIdAsync(id);
+            return _mapper.Map<AccountResponse>(result);
         }
 
-        public async Task<string> Auth(AuthAccount authAccount)
+        public async Task<string> Auth(AuthAccountRequestDTO authAccount)
         {
             var account = await _unitOfWork.AccountRepository.Auth(authAccount);
             if (account == null)

@@ -28,5 +28,6 @@ namespace Ecommerce.Domain.Entities
 
         public IEnumerable<Review> Reviews { get; set; }
         public IEnumerable<Order> Orders { get; set; }
+        public Cart Cart { get; set; }
     }
 }

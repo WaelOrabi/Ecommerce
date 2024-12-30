@@ -1,19 +1,14 @@
-﻿using Ecommerce.Domain.Entities;
+﻿using Ecommerce.Domain.DTO.ResponsesDTO;
 using Ecommerce.Domain.ServiceModel.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services.Interfaces
 {
     public interface IProductService
     {
-        Task<Product> GetById(int id);
-        Task<IEnumerable<Product>> GetAll();
-        Task<Product> Add(ProductRequest productRequest);
-        Task<Product> Update(ProductRequest productRequesty);
+        Task<ProductResponse> GetById(int id);
+        Task<IEnumerable<ProductResponse>> GetAll();
+        Task<ProductResponse> Add(ProductRequestDTO productRequest);
+        Task<ProductResponse?> Update(ProductRequestDTO productRequesty, int id);
         Task<int> Delete(int id);
     }
 }

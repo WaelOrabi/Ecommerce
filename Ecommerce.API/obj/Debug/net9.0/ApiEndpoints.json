@@ -25,7 +25,7 @@
     "Parameters": [
       {
         "Name": "authAccount",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.AuthAccount",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.AuthAccountRequestDTO",
         "IsRequired": true
       }
     ],
@@ -76,11 +76,16 @@
   {
     "ContainingType": "Ecommerce.API.Controllers.AccountController",
     "Method": "Update",
-    "RelativePath": "api/Account/Update",
-    "HttpMethod": "POST",
+    "RelativePath": "api/Account/Update/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
       {
         "Name": "accountRequest",
         "Type": "Ecommerce.Domain.ServiceModel.Requests.AccountRequest",
@@ -99,7 +104,7 @@
     "Parameters": [
       {
         "Name": "addressRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.AddressRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.AddressRequestDTO",
         "IsRequired": true
       }
     ],
@@ -144,26 +149,104 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Ecommerce.API.Controllers.AddressController",
     "Method": "UpdateAddress",
-    "RelativePath": "api/Address/Update",
+    "RelativePath": "api/Address/Update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "addressRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.AddressRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.CartController",
+    "Method": "AddCart",
+    "RelativePath": "api/Cart/Add",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "addressRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.AddressRequest",
+        "Name": "cartRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.CartRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.CartController",
+    "Method": "DeleteRole",
+    "RelativePath": "api/Cart/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.CartController",
+    "Method": "Get",
+    "RelativePath": "api/Cart/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.CartController",
+    "Method": "GetAll",
+    "RelativePath": "api/Cart/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.CartController",
+    "Method": "UpdateCart",
+    "RelativePath": "api/Cart/Update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cartRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.CartRequestDTO",
         "IsRequired": true
       }
     ],
@@ -179,7 +262,7 @@
     "Parameters": [
       {
         "Name": "categoryRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.CategoryRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.CategoryRequestDTO",
         "IsRequired": true
       }
     ],
@@ -230,14 +313,19 @@
   {
     "ContainingType": "Ecommerce.API.Controllers.CategoryController",
     "Method": "UpdateCategory",
-    "RelativePath": "api/Category/Update",
-    "HttpMethod": "POST",
+    "RelativePath": "api/Category/Update/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
         "Name": "categoryRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.CategoryRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.CategoryRequestDTO",
         "IsRequired": true
       }
     ],
@@ -253,7 +341,7 @@
     "Parameters": [
       {
         "Name": "orderRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.OrderRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.OrderRequestDTO",
         "IsRequired": true
       }
     ],
@@ -304,14 +392,19 @@
   {
     "ContainingType": "Ecommerce.API.Controllers.OrderController",
     "Method": "UpdateOrder",
-    "RelativePath": "api/Order/Update",
-    "HttpMethod": "POST",
+    "RelativePath": "api/Order/Update/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
         "Name": "orderRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.OrderRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.OrderRequestDTO",
         "IsRequired": true
       }
     ],
@@ -408,11 +501,16 @@
   {
     "ContainingType": "Ecommerce.API.Controllers.ProductController",
     "Method": "UpdateProduct",
-    "RelativePath": "api/Product/Update",
-    "HttpMethod": "POST",
+    "RelativePath": "api/Product/Update/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
       {
         "Name": "Name",
         "Type": "System.String",
@@ -461,7 +559,7 @@
     "Parameters": [
       {
         "Name": "roleRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.RoleRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.RoleRequestDTO",
         "IsRequired": true
       }
     ],
@@ -512,14 +610,19 @@
   {
     "ContainingType": "Ecommerce.API.Controllers.RoleController",
     "Method": "UpdateRole",
-    "RelativePath": "api/Role/Update",
-    "HttpMethod": "POST",
+    "RelativePath": "api/Role/Update/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
         "Name": "roleRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.RoleRequest",
+        "Type": "Ecommerce.Domain.ServiceModel.Requests.RoleRequestDTO",
         "IsRequired": true
       }
     ],

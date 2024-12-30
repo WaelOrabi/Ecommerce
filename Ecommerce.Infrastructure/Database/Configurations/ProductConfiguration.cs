@@ -18,6 +18,7 @@ namespace Ecommerce.Infrastructure.Database.Configurations
             builder.Property(x => x.Description).HasMaxLength(100).IsRequired(false);
             builder.Property(x => x.Image).IsRequired();
             builder.HasMany(x=>x.Reviews).WithOne(x=>x.Product).HasForeignKey(x=>x.ProductId).IsRequired(false);
+           
         }
     }
 }

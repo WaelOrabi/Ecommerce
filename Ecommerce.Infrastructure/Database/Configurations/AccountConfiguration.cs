@@ -24,6 +24,7 @@ namespace Ecommerce.Infrastructure.Database.Configurations
             builder.HasMany(x => x.Reviews).WithOne(x => x.Account).HasForeignKey(x => x.AccountId).IsRequired(false);
             builder.HasMany(x => x.Orders).WithOne(x => x.Account).HasForeignKey(x => x.AccountId).IsRequired(false);
          
+
         }
     }
 }
