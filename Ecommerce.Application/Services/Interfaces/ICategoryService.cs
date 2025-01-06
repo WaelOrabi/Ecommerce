@@ -1,14 +1,16 @@
-﻿using Ecommerce.Domain.DTO.ResponsesDTO;
-using Ecommerce.Domain.ServiceModel.Requests;
+﻿using Ecommerce.Application.Bases;
+using Ecommerce.Application.DTO.RequestsDTO.Category;
+using Ecommerce.Domain.DTO.ResponsesDTO;
 
 namespace Application.Services.Interfaces
 {
     public interface ICategoryService
     {
-        Task<CategoryResponse> GetById(int id);
-        Task<IEnumerable<CategoryResponse>> GetAll();
-        Task<CategoryResponse> Add(CategoryRequestDTO category);
-        Task<CategoryResponse?> Update(CategoryRequestDTO category, int id);
-        Task<int> Delete(int id);
+        Task<Response<CategoryResponse>> GetById(int id);
+        Task<bool> IsCategoryExist(int id);
+        Task<Response<IEnumerable<CategoryResponse>>> GetAll();
+        Task<Response<string>> Add(CategoryRequest category);
+        Task<Response<string>> Update(CategoryRequest category, int id);
+        Task<Response<int>> Delete(int id);
     }
 }

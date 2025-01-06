@@ -1,14 +1,15 @@
-﻿using Ecommerce.Domain.DTO.ResponsesDTO;
-using Ecommerce.Domain.ServiceModel.Requests;
+﻿using Ecommerce.Application.Bases;
+using Ecommerce.Application.DTO.RequestsDTO.Cart;
+using Ecommerce.Domain.DTO.ResponsesDTO;
 
 namespace Ecommerce.Application.Services.Interfaces
 {
     public interface ICartService
     {
-        Task<CartResponse> GetById(int id);
-        Task<IEnumerable<CartResponse>> GetAll();
-        Task<CartResponse> Add(CartRequestDTO cartRequest);
-        Task<CartResponse?> Update(CartRequestDTO cartRequest, int id);
-        Task<int> Delete(int id);
+        Task<Response<CartResponse>> GetById(int id);
+        Task<Response<IEnumerable<CartResponse>>> GetAll();
+        Task<Response<string>> Add(CartRequest cartRequest);
+        Task<Response<string>> Update(CartRequest cartRequest, int id);
+        Task<Response<int>> Delete(int id);
     }
 }

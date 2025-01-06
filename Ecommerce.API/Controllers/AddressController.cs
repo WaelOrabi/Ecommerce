@@ -1,51 +1,55 @@
 ﻿using Application.Services.Interfaces;
-using Ecommerce.Domain.ServiceModel.Requests;
+using Ecommerce.API.Base;
+using Ecommerce.Application.DTO.RequestsDTO.Address;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers
 {
-    [Route("api/[controller]")]
+
     [ApiController]
     [Authorize]
-    public class AddressController : ControllerBase
+    public class AddressController : AppControllerBase
     {
         private readonly IAddressService _addressService;
         public AddressController(IAddressService addressService)
         {
             _addressService = addressService;
         }
-        [HttpGet("Get/{id}")]
+        [HttpGet(Router.AddressRouting.GetById)]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _addressService.GetById(id));
+            var result = await _addressService.GetById(id);
+            return NewResult(result);
         }
-        [HttpGet("GetAll")]
+        [HttpGet(Router.AddressRouting.List)]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _addressService.GetAll());
+            var result = await _addressService.GetAll();
+            return NewResult(result);
 
         }
-        [HttpPost("Add")]
+        [HttpPost(Router.AddressRouting.Create)]
         [Authorize(policy: "Admins")]
-        public async Task<IActionResult> AddAddress(AddressRequestDTO addressRequest)
+        public async Task<IActionResult> AddAddress(AddressRequest addressRequest)
         {
-            return Ok(await _addressService.Add(addressRequest));
+            var result = await _addressService.Add(addressRequest);
+            return NewResult(result);
         }
-        [HttpPut("Update/{id}")]
+        [HttpPut(Router.AddressRouting.Update)]
         [Authorize(policy: "Admins")]
-        public async Task<IActionResult> UpdateAddress(int id, AddressRequestDTO addressRequest)
+        public async Task<IActionResult> UpdateAddress(int id, AddressRequest addressRequest)
         {
             var result = await _addressService.Update(addressRequest, id);
-            if (result == null)
-                return NotFound();
-            return Ok(result);
+
+            return NewResult(result);
         }
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete(Router.AddressRouting.Delete)]
         [Authorize(policy: "Admins")]
         public async Task<IActionResult> DeleteAddress(int id)
         {
-            return Ok(await _addressService.Delete(id));
+            var result = await _addressService.Delete(id);
+            return NewResult(result);
         }
     }
 }

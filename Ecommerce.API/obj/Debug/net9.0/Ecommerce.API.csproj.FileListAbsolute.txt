@@ -6,9 +6,15 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.API.deps.
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.API.runtimeconfig.json
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.API.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.API.pdb
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\AutoMapper.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Azure.Core.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Azure.Identity.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\FluentValidation.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Humanizer.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\MediatR.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\MediatR.Contracts.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
@@ -26,6 +32,7 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.EntityFra
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.Identity.Client.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
@@ -39,6 +46,8 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.OpenApi.d
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Mono.TextTemplating.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\StackExchange.Redis.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -140,6 +149,8 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.Infrastru
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.Application.pdb
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.Infrastructure.pdb
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ecommerce.Domain.pdb
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\Ar\Ecommerce.Application.resources.dll
+C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\En\Ecommerce.Application.resources.dll
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.csproj.AssemblyReference.cache
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.AssemblyInfoInputs.cache
@@ -165,4 +176,3 @@ C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\refint\Ecommerce.AP
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.pdb
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\Ecommerce.API.genruntimeconfig.cache
 C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\obj\Debug\net9.0\ref\Ecommerce.API.dll
-C:\Users\HP\Desktop\Ecommerce\Ecommerce.API\bin\Debug\net9.0\AutoMapper.dll

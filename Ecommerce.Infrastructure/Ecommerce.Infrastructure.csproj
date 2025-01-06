@@ -8,8 +8,6 @@
 
 	<ItemGroup>
 
-		<ProjectReference Include="..\Ecommerce.Application\Ecommerce.Application.csproj" />
-
 		<ProjectReference Include="..\Ecommerce.Domain\Ecommerce.Domain.csproj" />
 	</ItemGroup>
 
@@ -23,6 +21,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
+		<PackageReference Include="StackExchange.Redis" Version="2.8.24" />
 	</ItemGroup>
 
 </Project>

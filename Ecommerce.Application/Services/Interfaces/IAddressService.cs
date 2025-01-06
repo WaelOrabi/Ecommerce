@@ -1,14 +1,16 @@
-﻿using Ecommerce.Domain.DTO.ResponsesDTO;
-using Ecommerce.Domain.ServiceModel.Requests;
+﻿using Ecommerce.Application.Bases;
+using Ecommerce.Application.DTO.RequestsDTO.Address;
+using Ecommerce.Domain.DTO.ResponsesDTO;
 
 namespace Application.Services.Interfaces
 {
     public interface IAddressService
     {
-        Task<AddressResponse> GetById(int id);
-        Task<IEnumerable<AddressResponse>> GetAll();
-        Task<AddressResponse> Add(AddressRequestDTO addressRequest);
-        Task<AddressResponse?> Update(AddressRequestDTO addressRequest, int id);
-        Task<int> Delete(int id);
+        Task<Response<AddressResponse>> GetById(int id);
+        Task<Response<IEnumerable<AddressResponse>>> GetAll();
+        Task<Response<string>> Add(AddressRequest addressRequest);
+        Task<bool>IsAddressExist(int id);
+        Task<Response<string>> Update(AddressRequest addressRequest, int id);
+        Task<Response<int>> Delete(int id);
     }
 }

@@ -1,14 +1,16 @@
-﻿using Ecommerce.Domain.DTO.ResponsesDTO;
-using Ecommerce.Domain.ServiceModel.Requests;
+﻿using Ecommerce.Application.Bases;
+using Ecommerce.Application.DTO.RequestsDTO.Role;
+using Ecommerce.Domain.DTO.ResponsesDTO;
 
 namespace Application.Services.Interfaces
 {
     public interface IRoleService
     {
-        Task<RoleResponse> GetById(int id);
-        Task<IEnumerable<RoleResponse>> GetAll();
-        Task<RoleResponse> Add(RoleRequestDTO roleRequest);
-        Task<RoleResponse?> Update(RoleRequestDTO roleRequest, int id);
-        Task<int> Delete(int id);
+        Task<Response<RoleResponse>> GetById(int id);
+        Task<Response<IEnumerable<RoleResponse>>> GetAll();
+        Task<bool> IsRoleExist(int id);
+        Task<Response<string>> Add(RoleRequest roleRequest);
+        Task<Response<string>> Update(RoleRequest roleRequest, int id);
+        Task<Response<int>> Delete(int id);
     }
 }

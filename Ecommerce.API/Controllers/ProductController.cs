@@ -1,55 +1,62 @@
 ﻿using Application.Services.Interfaces;
-using Ecommerce.Domain.ServiceModel.Requests;
+using Ecommerce.API.Base;
+using Ecommerce.Application.DTO.RequestsDTO.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers
 {
-    [Route("api/[controller]")]
+
     [ApiController]
-    [Authorize]
-    public class ProductController : ControllerBase
+    // [Authorize]
+    public class ProductController : AppControllerBase
     {
         private readonly IProductService _productService;
         public ProductController(IProductService productService)
         {
             _productService = productService;
         }
-        [HttpGet("Get/{id}")]
+        [HttpGet(Router.ProductRouting.GetById)]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _productService.GetById(id));
+            var result = await _productService.GetById(id);
+            return NewResult(result);
         }
-        [HttpGet("GetAll")]
-
+        [HttpGet(Router.ProductRouting.List)]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllProducts()
         {
-            return Ok(await _productService.GetAll());
+            var result = await _productService.GetAll();
+            return NewResult(result);
         }
-        [HttpPost("Add")]
-        [Authorize(policy: "Admins")]
-        public async Task<IActionResult> AddProduct([FromForm] ProductRequestDTO productRequest)
+
+        // [Authorize(policy: "Admins")]
+        [HttpPost(Router.ProductRouting.Create)]
+        public async Task<IActionResult> AddProduct([FromForm] ProductRequest productRequest)
         {
 
-            return Ok(await _productService.Add(productRequest));
 
+
+            var result = await _productService.Add(productRequest);
+            return NewResult(result);
         }
-        [HttpPut("Update/{id}")]
-        [Authorize(policy: "Admins")]
-        public async Task<IActionResult> UpdateProduct([FromRoute] int id, [FromForm] ProductRequestDTO productRequest)
+
+        [HttpPut(Router.ProductRouting.Update)]
+        //  [Authorize(policy: "Admins")]
+        public async Task<IActionResult> UpdateProduct([FromRoute] int id, [FromForm] ProductRequest productRequest)
         {
             var result = await _productService.Update(productRequest, id);
-            if (result == null)
-                return NotFound();
-            return Ok(result);
+
+            return NewResult(result);
 
         }
-        [HttpDelete("Delete/{id}")]
-        [Authorize(policy: "Admins")]
+        [HttpDelete(Router.ProductRouting.Delete)]
+        //[Authorize(policy: "Admins")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-
-            return Ok(await _productService.Delete(id));
+            var result = await _productService.Delete(id);
+            return NewResult(result);
 
         }
     }

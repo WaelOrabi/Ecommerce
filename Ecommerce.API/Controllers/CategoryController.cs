@@ -1,48 +1,54 @@
 ﻿using Application.Services.Interfaces;
-using Ecommerce.Domain.ServiceModel.Requests;
+using Ecommerce.API.Base;
+using Ecommerce.Application.DTO.RequestsDTO.Category;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers
 {
-    [Route("api/[controller]")]
+
     [ApiController]
     [Authorize]
-    public class CategoryController(ICategoryService categoryService) : ControllerBase
+    public class CategoryController(ICategoryService categoryService) : AppControllerBase
     {
 
 
-        [HttpPost("Add")]
+        [HttpPost(Router.CategoryRouting.Create)]
         [Authorize(policy: "Admins")]
-        public async Task<IActionResult> AddCategory([FromBody] CategoryRequestDTO categoryRequest)
+        public async Task<IActionResult> AddCategory([FromBody] CategoryRequest categoryRequest)
         {
-            return Ok(await categoryService.Add(categoryRequest));
+            var result = await categoryService.Add(categoryRequest);
+            return NewResult(result);
         }
-        [HttpPut("Update/{id}")]
+        [HttpPut(Router.CategoryRouting.Update)]
         [Authorize(policy: "Admins")]
-        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryRequestDTO categoryRequest)
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryRequest categoryRequest)
         {
             var result = await categoryService.Update(categoryRequest, id);
-            if (result == null)
-                return NotFound();
-            return Ok(result);
+
+            return NewResult(result);
         }
-        [HttpGet("Get/{id}")]
+        [HttpGet(Router.CategoryRouting.GetById)]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCategory(int id)
         {
-            return Ok(await categoryService.GetById(id));
+            var result = await categoryService.GetById(id);
+            return NewResult(result);
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet(Router.CategoryRouting.List)]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllCategory()
         {
-            return Ok(await categoryService.GetAll());
+            var result = await categoryService.GetAll();
+            return NewResult(result);
         }
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete(Router.CategoryRouting.Delete)]
         [Authorize(policy: "Admins")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            return Ok(await categoryService.Delete(id));
+            var result = await categoryService.Delete(id);
+            return NewResult(result);
         }
     }
 }

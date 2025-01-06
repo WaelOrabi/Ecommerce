@@ -1,14 +1,15 @@
-﻿using Ecommerce.Domain.DTO.ResponsesDTO;
-using Ecommerce.Domain.ServiceModel.Requests;
+﻿using Ecommerce.Application.Bases;
+using Ecommerce.Application.DTO.RequestsDTO.Order;
+using Ecommerce.Domain.DTO.ResponsesDTO;
 
 namespace Application.Services.Interfaces
 {
     public interface IOrderService
     {
-        Task<OrderResponse> GetById(int id);
-        Task<IEnumerable<OrderResponse>> GetAll();
-        Task<OrderResponse> Add(OrderRequestDTO orderRequest);
-        Task<OrderResponse?> Update(OrderRequestDTO orderRequest, int id);
-        Task<int> Delete(int id);
+        Task<Response<OrderResponse>> GetById(int id);
+        Task<Response<IEnumerable<OrderResponse>>> GetAll();
+        Task<Response<string>> Add(OrderRequest orderRequest);
+        Task<Response<string>> Update(OrderRequest orderRequest, int id);
+        Task<Response<int>> Delete(int id);
     }
 }

@@ -75,6 +75,10 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[8.3.0, )"
@@ -145,6 +149,9 @@
             "projectReferences": {
               "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Domain\\Ecommerce.Domain.csproj": {
                 "projectPath": "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Domain\\Ecommerce.Domain.csproj"
+              },
+              "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Infrastructure\\Ecommerce.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Infrastructure\\Ecommerce.Infrastructure.csproj"
               }
             }
           }
@@ -169,7 +176,23 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.11.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.4.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.0, )"
             },
@@ -188,6 +211,10 @@
             "Microsoft.Extensions.Options": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.24, )"
             },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",
@@ -321,9 +348,6 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Application\\Ecommerce.Application.csproj": {
-                "projectPath": "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Application\\Ecommerce.Application.csproj"
-              },
               "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Domain\\Ecommerce.Domain.csproj": {
                 "projectPath": "C:\\Users\\HP\\Desktop\\Ecommerce\\Ecommerce.Domain\\Ecommerce.Domain.csproj"
               }
@@ -371,6 +395,10 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.24, )"
             }
           },
           "imports": [

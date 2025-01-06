@@ -1,61 +1,70 @@
 ﻿using Application.Services.Interfaces;
-using Ecommerce.Domain.ServiceModel.Requests;
+using Ecommerce.API.Base;
+using Ecommerce.Application.DTO.RequestsDTO.AuthAccount;
+using Ecommerce.Domain.DTO.RequestsDTO.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace Ecommerce.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
 
-    public class AccountController : ControllerBase
+    [ApiController]
+    //[ResponseCache(CacheProfileName = "120SecondsDuration")]
+    [OutputCache(PolicyName = "120SecondsDuration")]
+    public class AccountController : AppControllerBase
     {
         private readonly IAccountService _accountService;
         public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
         }
-        [HttpGet("GetById/{id}")]
-        [Authorize]
+        [HttpGet(Router.AccountRouting.GetById)]
+        // [Authorize]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _accountService.GetById(id));
+            var response = await _accountService.GetById(id);
+            return NewResult(response);
         }
-        [HttpGet("GetAll")]
-        [Authorize]
+        [HttpGet(Router.AccountRouting.List)]
+        //  [ResponseCache(Duration = 60)]
+        [OutputCache(Duration = 60)]
+
+        //  [Authorize]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _accountService.GetAll());
+            var result = await _accountService.GetAll();
+            return NewResult(result);
         }
-        [HttpPost("Add")]
+        [HttpPost(Router.AccountRouting.Create)]
+
         public async Task<IActionResult> Add(AccountRequest accountRequest)
         {
-            return Ok(await _accountService.Add(accountRequest));
+            var result = await _accountService.Add(accountRequest);
+            return NewResult(result);
         }
-        [HttpPut("Update/{id}")]
+        [HttpPut(Router.AccountRouting.Update)]
         [Authorize]
+
         public async Task<ActionResult> Update(int id, AccountRequest accountRequest)
         {
             var result = await _accountService.Update(accountRequest, id);
-            if (result == null)
-                return NotFound();
-            return Ok(result);
+
+            return NewResult(result);
         }
-        [HttpPost("Auth")]
-        public async Task<IActionResult> Auth(AuthAccountRequestDTO authAccount)
+        [HttpPost(Router.AccountRouting.Auth)]
+        public async Task<IActionResult> Auth(AuthAccountRequest authAccount)
         {
             var authResult = await _accountService.Auth(authAccount);
-            if (authResult == "Account not found")
-            {
-                return Unauthorized();
-            }
-            return Ok(authResult);
+
+            return NewResult(authResult);
         }
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete(Router.AccountRouting.Delete)]
         [Authorize(Policy = "Admins")]
         public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await _accountService.Delete(id));
+            var result = await _accountService.Delete(id);
+            return NewResult(result);
         }
 
     }

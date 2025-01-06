@@ -1,52 +1,56 @@
 ﻿using Application.Services.Interfaces;
-using Ecommerce.Domain.ServiceModel.Requests;
+using Ecommerce.API.Base;
+using Ecommerce.Application.DTO.RequestsDTO.Role;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers
 {
-    [Route("api/[controller]")]
+
     [ApiController]
     [Authorize(policy: "Admins")]
-    public class RoleController : ControllerBase
+    public class RoleController : AppControllerBase
     {
         private readonly IRoleService _roleService;
         public RoleController(IRoleService roleService)
         {
             _roleService = roleService;
         }
-        [HttpGet("Get/{id}")]
+        [HttpGet(Router.RoleRouting.GetById)]
 
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _roleService.GetById(id));
+            var result = await _roleService.GetById(id);
+            return NewResult(result);
         }
-        [HttpGet("GetAll")]
+        [HttpGet(Router.RoleRouting.List)]
 
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _roleService.GetAll());
+            var result = await _roleService.GetAll();
+            return NewResult(result);
         }
-        [HttpPost("Add")]
+        [HttpPost(Router.RoleRouting.Create)]
 
-        public async Task<IActionResult> AddRole(RoleRequestDTO roleRequest)
+        public async Task<IActionResult> AddRole(RoleRequest roleRequest)
         {
-            return Ok(await _roleService.Add(roleRequest));
+            var result = await _roleService.Add(roleRequest);
+            return NewResult(result);
         }
-        [HttpPut("Update/{id}")]
+        [HttpPut(Router.RoleRouting.Update)]
 
-        public async Task<IActionResult> UpdateRole([FromRoute] int id, RoleRequestDTO roleRequest)
+        public async Task<IActionResult> UpdateRole([FromRoute] int id, RoleRequest roleRequest)
         {
             var role = await _roleService.Update(roleRequest, id);
-            if (role == null)
-                return NotFound();
-            return Ok(role);
+
+            return NewResult(role);
         }
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete(Router.RoleRouting.Delete)]
 
         public async Task<ActionResult> DeleteRole(int id)
         {
-            return Ok(await _roleService.Delete(id));
+            var result = await _roleService.Delete(id);
+            return NewResult(result);
         }
     }
 }
