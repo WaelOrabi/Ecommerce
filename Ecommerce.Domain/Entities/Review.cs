@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ecommerce.Domain.Entities.Identity;
 
 namespace Ecommerce.Domain.Entities
 {
@@ -11,15 +6,15 @@ namespace Ecommerce.Domain.Entities
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public int Rating { get; set; } 
+        public int Rating { get; set; }
 
-     
+
         public int ProductId { get; set; }
         public Product Product { get; set; }
 
-      
-        public int AccountId { get; set; }
-        public Account Account { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 
 }

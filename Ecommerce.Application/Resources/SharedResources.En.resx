@@ -135,8 +135,14 @@
   <data name="EmailIsExist" xml:space="preserve">
     <value>Email is Exist</value>
   </data>
+  <data name="EmailIsNotExist" xml:space="preserve">
+    <value>Email Is Not Exist</value>
+  </data>
   <data name="FaildToAddUser" xml:space="preserve">
     <value>Faild in add user</value>
+  </data>
+  <data name="FailedToUpdateEmailConfirmed" xml:space="preserve">
+    <value>Failed To Email Confirmed</value>
   </data>
   <data name="FileSizeIsGreaterThan10MB" xml:space="preserve">
     <value>File size is greater than 10MB</value>
@@ -161,6 +167,9 @@
   </data>
   <data name="IsNotExist" xml:space="preserve">
     <value> is Not Exist</value>
+  </data>
+  <data name="MaxLengthIs100" xml:space="preserve">
+    <value>Max Length Is 100</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

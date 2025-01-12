@@ -56,5 +56,6 @@ namespace Ecommerce.API.Extensions
             services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnection));
             return services;
         }
+
     }
 }

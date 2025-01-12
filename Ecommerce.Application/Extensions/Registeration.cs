@@ -1,8 +1,8 @@
 ﻿using Application.Services.Interfaces;
-using Ecommerce.Application.Extensions;
 using Ecommerce.Application.Services.Implementation;
 using Ecommerce.Application.Services.Interfaces;
 using Ecommerce.Domain.Behaviors;
+using Ecommerce.Domain.Helpers;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -23,18 +23,21 @@ namespace Application.Extensions
 
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
-            services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<IAddressService, AddressService>();
-            services.AddTransient<IAccountService, AccountService>();
+
+
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<ICartService, CartService>();
-
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddTransient<IApplicationUserService, ApplicationUserService>();
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
             return services;
         }
         public static IServiceCollection RegisterAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<TokenProvider>();
+            var jwtSettings = new JwtSettings();
+            configuration.GetSection(nameof(jwtSettings)).Bind(jwtSettings);
+            services.AddSingleton(jwtSettings);
+
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -44,11 +47,11 @@ namespace Application.Extensions
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
-                        ValidIssuer = configuration["Jwt:Issuer"],
+                        ValidIssuer = jwtSettings.Issuer,
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SigningKey"])),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SigningKey)),
                         ValidateAudience = true,
-                        ValidAudience = configuration["Jwt:Audience"],
+                        ValidAudience = jwtSettings.Audience,
 
                     };
                 });
@@ -92,6 +95,13 @@ namespace Application.Extensions
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
             });
+            return services;
+        }
+
+        public static IServiceCollection RegisterHttpContextAccessor(this IServiceCollection services)
+        {
+
+            services.AddHttpContextAccessor();
             return services;
         }
     }

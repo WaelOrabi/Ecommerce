@@ -15,6 +15,25 @@
             public const string Delete = prefix + "{id}";
             public const string Auth = prefix + "Auth";
         }
+        public static class ApplicationUserRouting
+        {
+            public const string prefix = Role + "User/";
+            public const string List = prefix + "List";
+            public const string ListPagination = prefix + "Paginate";
+            public const string GetById = prefix + "{id}";
+            public const string Create = prefix + "Create";
+            public const string Update = prefix + "Update";
+            public const string Delete = prefix + "{id}";
+            public const string Auth = prefix + "Auth";
+        }
+        public static class AuthenticationRouting
+        {
+            public const string prefix = Role + "Authentication/";
+            public const string SigIn = prefix + "SigIn";
+            public const string RefreshToken = prefix + "Refresh-Token";
+            public const string ValidateToken = prefix + "Validate-Token";
+
+        }
         public static class AddressRouting
         {
             public const string prefix = Role + "Address/";

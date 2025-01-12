@@ -1,174 +1,48 @@
 [
   {
-    "ContainingType": "Ecommerce.API.Controllers.AccountController",
-    "Method": "GetById",
-    "RelativePath": "Api/V1/Account/{id}",
+    "ContainingType": "Ecommerce.API.Controllers.AuthenticationController",
+    "Method": "RefreshToken",
+    "RelativePath": "Api/V1/Authentication/Refresh-Token",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "refreshTokenRequest",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Authentication.GetRefreshToken.RefreshTokenRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce.API.Controllers.AccountController",
-    "Method": "Delete",
-    "RelativePath": "Api/V1/Account/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.AccountController",
-    "Method": "Auth",
-    "RelativePath": "Api/V1/Account/Auth",
+    "ContainingType": "Ecommerce.API.Controllers.AuthenticationController",
+    "Method": "SigIn",
+    "RelativePath": "Api/V1/Authentication/SigIn",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "authAccount",
-        "Type": "Ecommerce.Application.DTO.RequestsDTO.AuthAccountRequestDTO",
+        "Name": "sigInRequest",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Authentication.Sigin.SigInRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce.API.Controllers.AccountController",
-    "Method": "Add",
-    "RelativePath": "Api/V1/Account/Create",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "accountRequest",
-        "Type": "Ecommerce.Domain.DTO.RequestsDTO.Account.AccountRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.AccountController",
-    "Method": "GetAll",
-    "RelativePath": "Api/V1/Account/List",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.AccountController",
-    "Method": "Update",
-    "RelativePath": "Api/V1/Account/Update/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "accountRequest",
-        "Type": "Ecommerce.Domain.DTO.RequestsDTO.Account.AccountRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.AddressController",
-    "Method": "Get",
-    "RelativePath": "Api/V1/Address/{id}",
+    "ContainingType": "Ecommerce.API.Controllers.AuthenticationController",
+    "Method": "ValidateToken",
+    "RelativePath": "Api/V1/Authentication/Validate-Token",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.AddressController",
-    "Method": "DeleteAddress",
-    "RelativePath": "Api/V1/Address/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.AddressController",
-    "Method": "AddAddress",
-    "RelativePath": "Api/V1/Address/Create",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "addressRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.AddressRequestDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.AddressController",
-    "Method": "GetAll",
-    "RelativePath": "Api/V1/Address/List",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.AddressController",
-    "Method": "UpdateAddress",
-    "RelativePath": "Api/V1/Address/Update",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "Token",
+        "Type": "System.String",
         "IsRequired": false
-      },
-      {
-        "Name": "addressRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.AddressRequestDTO",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -215,7 +89,7 @@
     "Parameters": [
       {
         "Name": "cartRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.CartRequestDTO",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Cart.CartRequest",
         "IsRequired": true
       }
     ],
@@ -246,7 +120,7 @@
       },
       {
         "Name": "cartRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.CartRequestDTO",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Cart.CartRequest",
         "IsRequired": true
       }
     ],
@@ -294,7 +168,7 @@
     "Parameters": [
       {
         "Name": "categoryRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.CategoryRequestDTO",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Category.CategoryRequest",
         "IsRequired": true
       }
     ],
@@ -325,7 +199,7 @@
       },
       {
         "Name": "categoryRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.CategoryRequestDTO",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Category.CategoryRequest",
         "IsRequired": true
       }
     ],
@@ -373,7 +247,7 @@
     "Parameters": [
       {
         "Name": "orderRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.OrderRequestDTO",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Order.OrderRequest",
         "IsRequired": true
       }
     ],
@@ -404,7 +278,7 @@
       },
       {
         "Name": "orderRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.OrderRequestDTO",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Order.OrderRequest",
         "IsRequired": true
       }
     ],
@@ -560,25 +434,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce.API.Controllers.RoleController",
-    "Method": "GetById",
-    "RelativePath": "Api/V1/Role/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce.API.Controllers.RoleController",
-    "Method": "DeleteRole",
-    "RelativePath": "Api/V1/Role/{id}",
+    "ContainingType": "Ecommerce.API.Controllers.ApplicationUserController",
+    "Method": "Delete",
+    "RelativePath": "Api/V1/User/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -592,25 +450,41 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce.API.Controllers.RoleController",
-    "Method": "AddRole",
-    "RelativePath": "Api/V1/Role/Create",
-    "HttpMethod": "POST",
+    "ContainingType": "Ecommerce.API.Controllers.ApplicationUserController",
+    "Method": "GetById",
+    "RelativePath": "Api/V1/User/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "roleRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.RoleRequestDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce.API.Controllers.RoleController",
-    "Method": "GetAll",
-    "RelativePath": "Api/V1/Role/List",
+    "ContainingType": "Ecommerce.API.Controllers.ApplicationUserController",
+    "Method": "Add",
+    "RelativePath": "Api/V1/User/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userRegisterRequest",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.ApplicationUser.RegisterUser.UserRegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.ApplicationUserController",
+    "Method": "GetAllUsers",
+    "RelativePath": "Api/V1/User/List",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -618,21 +492,37 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce.API.Controllers.RoleController",
-    "Method": "UpdateRole",
-    "RelativePath": "Api/V1/Role/Update",
+    "ContainingType": "Ecommerce.API.Controllers.ApplicationUserController",
+    "Method": "GetListPaginationUsers",
+    "RelativePath": "Api/V1/User/Paginate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.ApplicationUserController",
+    "Method": "Update",
+    "RelativePath": "Api/V1/User/Update",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "roleRequest",
-        "Type": "Ecommerce.Domain.ServiceModel.Requests.RoleRequestDTO",
+        "Name": "editUserRequest",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.ApplicationUser.EditUser.EditUserRequest",
         "IsRequired": true
       }
     ],

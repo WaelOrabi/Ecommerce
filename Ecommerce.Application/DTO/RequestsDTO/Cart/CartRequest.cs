@@ -4,7 +4,7 @@ namespace Ecommerce.Application.DTO.RequestsDTO.Cart
 {
     public class CartRequest
     {
-        public int AccountId { get; set; }
+        public int UserId { get; set; }
         public List<CartItemRequest> CartItems { get; set; }
     }
 }

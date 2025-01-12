@@ -18,12 +18,12 @@ namespace Ecommerce.Application.Services.Implementation
 
         public async Task<Response<string>> Add(CartRequest cartRequest)
         {
-            var account = await _unitOfWork.AccountRepository.GetByIdAsync(cartRequest.AccountId);
-            if (account == null)
-            {
+            //var account = await _unitOfWork.AccountRepository.GetByIdAsync(cartRequest.AccountId);
+            //if (account == null)
+            //{
 
-                return GenerateNotFoundResponse<string>();
-            }
+            //    return GenerateNotFoundResponse<string>();
+            //}
             var productIds = cartRequest.CartItems.Select(p => p.ProductId).ToList();
             var products = await _unitOfWork.ProductRepository.GetAllAsync(p => productIds.Contains(p.Id));
             if (products.Count != productIds.Count)
@@ -42,7 +42,7 @@ namespace Ecommerce.Application.Services.Implementation
                 return GenerateNotFoundResponse<int>();
             await unitOfWork.CartRepository.DeleteByIdAsync(cart);
             await unitOfWork.CompleteAsync();
-            return GenerateDeleteResponse(id);
+            return GenerateDeleteResponse<int>();
         }
 
         public async Task<Response<IEnumerable<CartResponse>>> GetAll()
@@ -73,7 +73,7 @@ namespace Ecommerce.Application.Services.Implementation
             if (products.Count != productIds.Count)
                 return GenerateNotFoundResponse<string>("One or more products not found.");
 
-            cart.AccountId = cartRequest.AccountId;
+            cart.UserId = cartRequest.UserId;
 
             var existingCartItems = cart.CartItems.ToList();
 

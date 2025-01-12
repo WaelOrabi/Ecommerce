@@ -33,5 +33,8 @@
         public const string PasswordsDoNotMatch = "PasswordsDoNotMatch";
         public const string InvalidRole = "InvalidRole";
         public const string InvalidAddress = "InvalidAddress";
+        public const string MaxLengthIs100 = "MaxLengthIs100";
+        public const string EmailIsNotExist = "EmailIsNotExist";
+        public const string FailedToUpdateEmailConfirmed = "FailedToUpdateEmailConfirmed";
     }
 }

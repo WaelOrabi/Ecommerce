@@ -135,8 +135,14 @@
   <data name="EmailIsExist" xml:space="preserve">
     <value>الإيميل موجود</value>
   </data>
+  <data name="EmailIsNotExist" xml:space="preserve">
+    <value>الإيميل غير موجود</value>
+  </data>
   <data name="FaildToAddUser" xml:space="preserve">
     <value>فشل في إضافة المستخدم</value>
+  </data>
+  <data name="FailedToUpdateEmailConfirmed" xml:space="preserve">
+    <value>فشل في تأكيد الإيميل</value>
   </data>
   <data name="FileSizeIsGreaterThan10MB" xml:space="preserve">
     <value>حجم الملف أكبر من ١٠ ميغا بايت</value>
@@ -161,6 +167,9 @@
   </data>
   <data name="IsNotExist" xml:space="preserve">
     <value>غير موجود</value>
+  </data>
+  <data name="MaxLengthIs100" xml:space="preserve">
+    <value>الحد الأقصى 100 حرف</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>الاسم</value>

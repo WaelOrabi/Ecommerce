@@ -28,9 +28,9 @@ namespace Ecommerce.Application.Bases
                 Meta = meta
             };
         }
-        public Response<T> GenerateDeleteResponse<T>(T data, string message = null)
+        public Response<T> GenerateDeleteResponse<T>( string message = null)
         {
-            return CreateResponse<T>(HttpStatusCode.OK, true, message ?? _stringLocalizer[SharedResourcesKeys.Deleted], data);
+            return CreateResponse<T>(HttpStatusCode.OK, true, message ?? _stringLocalizer[SharedResourcesKeys.Deleted]);
         }
         public Response<T> GenerateSuccessResponse<T>(T entity, object meta = null)
         {

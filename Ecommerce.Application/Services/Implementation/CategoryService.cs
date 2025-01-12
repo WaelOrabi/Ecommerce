@@ -35,7 +35,7 @@ namespace Ecommerce.Application.Services.Implementation
 
             await _unitOfWork.CategoryRepository.DeleteByIdAsync(category);
             await _unitOfWork.CompleteAsync();
-            return GenerateDeleteResponse<int>(id);
+            return GenerateDeleteResponse<int>();
         }
 
         public async Task<Response<IEnumerable<CategoryResponse>>> GetAll()

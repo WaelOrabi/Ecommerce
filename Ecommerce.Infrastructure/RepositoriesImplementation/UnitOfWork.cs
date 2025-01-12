@@ -15,19 +15,19 @@ namespace Ecommerce.Infrastructure.RepositoriesImplementation
             _dbContext = dbContext;
             _connectionMultiplexer = connectionMultiplexer;
 
-            AccountRepository = new AccountRepository(_dbContext);
-            AddressRepository = new AddressRepository(_dbContext);
+
             CategoryRepository = new CategoryRepository(_dbContext);
             OrderRepository = new OrderRepository(_dbContext);
             ProductRepository = new ProductRepository(_dbContext);
             ReviewRepository = new ReviewRepository(_dbContext);
-            RoleRepository = new RoleRepository(_dbContext);
+
             CartRepository = new CartRepository(_dbContext);
             CartItemRepository = new CartItemRepository(_dbContext);
+            UserRefreshTokenRepository = new UserRefreshTokenRepository(_dbContext);
             CacheRepositroy = new CacheRepository(_connectionMultiplexer);
         }
 
-        public IAccountRepository AccountRepository { get; private set; }
+
 
         public ICategoryRepository CategoryRepository { get; private set; }
 
@@ -37,14 +37,14 @@ namespace Ecommerce.Infrastructure.RepositoriesImplementation
 
         public IReviewRepository ReviewRepository { get; private set; }
 
-        public IRoleRepository RoleRepository { get; private set; }
 
-        public IAddressRepository AddressRepository { get; private set; }
 
         public ICartRepository CartRepository { get; private set; }
 
         public ICartItemRepository CartItemRepository { get; private set; }
         public ICacheRepositroy CacheRepositroy { get; private set; }
+
+        public IUserRefreshTokenRepository UserRefreshTokenRepository { get; private set; }
 
         public async Task CompleteAsync()
         {

@@ -19,9 +19,9 @@ namespace Ecommerce.Application.Services.Implementation
 
         public async Task<Response<string>> Add(OrderRequest orderRequest)
         {
-            var account = await _unitOfWork.AccountRepository.GetByIdAsync(orderRequest.AccountId);
-            if (account == null)
-                return GenerateNotFoundResponse<string>();
+            //var account = await _unitOfWork.AccountRepository.GetByIdAsync(orderRequest.AccountId);
+            //if (account == null)
+            //    return GenerateNotFoundResponse<string>();
             var productIds = orderRequest.OrderProducts.Select(p => p.ProductId).ToList();
             var products = await unitOfWork.ProductRepository.GetAllAsync(p => productIds.Contains(p.Id));
             if (products.Count != productIds.Count)
@@ -50,7 +50,7 @@ namespace Ecommerce.Application.Services.Implementation
                 return GenerateNotFoundResponse<int>();
             await unitOfWork.OrderRepository.DeleteByIdAsync(order);
             await unitOfWork.CompleteAsync();
-            return GenerateDeleteResponse(id);
+            return GenerateDeleteResponse<int>();
         }
 
         public async Task<Response<IEnumerable<OrderResponse>>> GetAll()

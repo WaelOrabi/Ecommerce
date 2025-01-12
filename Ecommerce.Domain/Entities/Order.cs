@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
+﻿using Ecommerce.Domain.Entities.Identity;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Ecommerce.Domain.Entities
 {
@@ -15,10 +10,10 @@ namespace Ecommerce.Domain.Entities
         public decimal TotalPrice { get; set; }
         public DateTime CreateAt { get; set; }
 
-       
-        public int AccountId { get; set; }
+
+        public int UserId { get; set; }
         [JsonIgnore]
-        public Account Account { get; set; }
+        public User User { get; set; }
         public IEnumerable<OrderProduct> OrderProducts { get; set; }
     }
 }

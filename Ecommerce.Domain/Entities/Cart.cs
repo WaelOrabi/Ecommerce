@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ecommerce.Domain.Entities.Identity;
 
 namespace Ecommerce.Domain.Entities
 {
     public class Cart
     {
         public int Id { get; set; }
-        public int AccountId { get; set; }
-        public Account Account { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
         public ICollection<CartItem> CartItems { get; set; }
     }
 

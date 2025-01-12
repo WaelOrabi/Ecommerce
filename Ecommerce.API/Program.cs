@@ -9,24 +9,33 @@ var config = builder.Configuration;
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGenWithAuth();
-builder.Services.AddHttpContextAccessor();
 
-builder.Services.RegisterLocalization();
+
+
+
+#region configure api layer
+builder.Services.AddSwaggerGenWithAuth();
 builder.Services.RegisterDbContext(config);
 builder.Services.RegisterRedis(config);
-builder.Services.RegisterValidation();
-
-
-#region Configure Authentication and  Authorization
-builder.Services.RegisterAuthentication(config);
-
-builder.Services.RegisterAuthorization();
 #endregion
 
-builder.Services.RegisterMapper();
-builder.Services.RegisterUnitOfWork();
+
+#region configure application layer
 builder.Services.RegisterServices();
+builder.Services.RegisterAuthentication(config);
+builder.Services.RegisterAuthorization();
+builder.Services.RegisterMapper();
+builder.Services.RegisterValidation();
+builder.Services.RegisterLocalization();
+builder.Services.RegisterHttpContextAccessor();
+#endregion
+
+#region configure infrastructure layer
+builder.Services.RegisterationIdentity();
+builder.Services.RegisterationUnitOfWork();
+#endregion
+
+
 
 
 
@@ -61,6 +70,7 @@ app.UseRequestLocalization(options.Value);
 #endregion
 
 app.UseMiddleware<ErrorHandlerMeddleware>();
+
 app.UseAuthentication();
 app.UseAuthorization();
 

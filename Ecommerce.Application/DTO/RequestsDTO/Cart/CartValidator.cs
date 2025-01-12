@@ -1,5 +1,4 @@
-﻿using Application.Services.Interfaces;
-using Ecommerce.Application.Resources;
+﻿using Ecommerce.Application.Resources;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
 
@@ -8,11 +7,11 @@ namespace Ecommerce.Application.DTO.RequestsDTO.Cart
     public class CartValidation : AbstractValidator<CartRequest>
     {
         private readonly IStringLocalizer<SharedResources> _localizer;
-        private readonly IAccountService _accountService;
+        //private readonly IAccountService _accountService;
 
-        public CartValidation(IStringLocalizer<SharedResources> localizer, IAccountService accountService)
+        public CartValidation(IStringLocalizer<SharedResources> localizer)//, IAccountService accountService)
         {
-            _accountService = accountService;
+            //     _accountService = accountService;
             _localizer = localizer;
 
             ApplayCustomValidationsRules();
@@ -21,7 +20,7 @@ namespace Ecommerce.Application.DTO.RequestsDTO.Cart
 
         public void ApplayCustomValidationsRules()
         {
-            RuleFor(x => x.AccountId).MustAsync(async (key, CancellationToken) => await _accountService.IsAccountExist(key)).WithMessage(_localizer[SharedResourcesKeys.NotFound]);
+            //       RuleFor(x => x.AccountId).MustAsync(async (key, CancellationToken) => await _accountService.IsAccountExist(key)).WithMessage(_localizer[SharedResourcesKeys.NotFound]);
 
         }
 

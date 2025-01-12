@@ -9,7 +9,7 @@ namespace Ecommerce.Infrastructure.Database.Configurations
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.HasOne(x => x.Account).WithOne(x => x.Cart).HasForeignKey<Cart>(x => x.AccountId).IsRequired(true);
+            builder.HasOne(x => x.User).WithOne(x => x.Cart).HasForeignKey<Cart>(x => x.UserId).IsRequired(true);
             builder.HasMany(x => x.CartItems).WithOne(x => x.Cart).HasForeignKey(x => x.CartId).IsRequired(false).OnDelete(DeleteBehavior.SetNull); ;
         }
     }
