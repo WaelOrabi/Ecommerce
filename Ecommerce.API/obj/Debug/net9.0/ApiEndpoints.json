@@ -3,14 +3,19 @@
     "ContainingType": "Ecommerce.API.Controllers.AuthenticationController",
     "Method": "RefreshToken",
     "RelativePath": "Api/V1/Authentication/Refresh-Token",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "refreshTokenRequest",
-        "Type": "Ecommerce.Application.DTO.RequestsDTO.Authentication.GetRefreshToken.RefreshTokenRequest",
-        "IsRequired": true
+        "Name": "RefreshToken",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AccessToken",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -24,9 +29,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "sigInRequest",
-        "Type": "Ecommerce.Application.DTO.RequestsDTO.Authentication.Sigin.SigInRequest",
-        "IsRequired": true
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -43,6 +53,149 @@
         "Name": "Token",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "CreateRole",
+    "RelativePath": "Api/V1/Authorization/Role/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NameRole",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "DeleteRole",
+    "RelativePath": "Api/V1/Authorization/Role/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "GetById",
+    "RelativePath": "Api/V1/Authorization/Role/Get-By-Id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "GetRoles",
+    "RelativePath": "Api/V1/Authorization/Role/List",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "ManageUserClaims",
+    "RelativePath": "Api/V1/Authorization/Role/Manage-User-Claims/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "ManageUserRoles",
+    "RelativePath": "Api/V1/Authorization/Role/Manage-User-Roles/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "UpdateRole",
+    "RelativePath": "Api/V1/Authorization/Role/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "UpdateUserClaims",
+    "RelativePath": "Api/V1/Authorization/Role/Update-User-Claims",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateUserClaimsRequest",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Authorization.UpdateUserClaims.UpdateUserClaimsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce.API.Controllers.AuthorizationController",
+    "Method": "UpdateUserRoles",
+    "RelativePath": "Api/V1/Authorization/Role/Update-User-Roles",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateUserRolesRequest",
+        "Type": "Ecommerce.Application.DTO.RequestsDTO.Authorization.UpdateUserRoles.UpdateUserRolesRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -380,7 +533,7 @@
   {
     "ContainingType": "Ecommerce.API.Controllers.ProductController",
     "Method": "UpdateProduct",
-    "RelativePath": "Api/V1/Product/Update",
+    "RelativePath": "Api/V1/Product/Update/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -388,7 +541,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
         "Name": "Name",

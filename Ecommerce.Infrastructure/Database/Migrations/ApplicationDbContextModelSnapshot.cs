@@ -38,7 +38,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Carts", (string)null);
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.CartItem", b =>
@@ -64,7 +64,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItems", (string)null);
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Category", b =>
@@ -86,7 +86,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Identity.Role", b =>
@@ -233,7 +233,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRefreshToken", (string)null);
+                    b.ToTable("UserRefreshToken");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Image", b =>
@@ -273,7 +273,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Order", b =>
@@ -300,7 +300,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.OrderProduct", b =>
@@ -318,7 +318,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderProducts", (string)null);
+                    b.ToTable("OrderProducts");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Product", b =>
@@ -354,7 +354,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Entities.Review", b =>
@@ -385,7 +385,7 @@ namespace Ecommerce.Infrastructure.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

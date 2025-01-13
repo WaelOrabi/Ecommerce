@@ -29,6 +29,7 @@ namespace Application.Extensions
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.AddTransient<IAuthorizationService, AuthorizationService>();
             return services;
         }
         public static IServiceCollection RegisterAuthentication(this IServiceCollection services, IConfiguration configuration)
@@ -38,7 +39,12 @@ namespace Application.Extensions
             services.AddSingleton(jwtSettings);
 
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                 .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;
@@ -59,15 +65,7 @@ namespace Application.Extensions
         }
         public static IServiceCollection RegisterAuthorization(this IServiceCollection services)
         {
-            services.AddAuthorization(options =>
-            {
-
-                options.AddPolicy("Admins", builder =>
-                {
-                    builder.RequireRole("Admin");
-
-                });
-            });
+            services.AddAuthorization();
             return services;
         }
         public static IServiceCollection RegisterMapper(this IServiceCollection services)
@@ -84,7 +82,7 @@ namespace Application.Extensions
         public static IServiceCollection RegisterLocalization(this IServiceCollection services)
         {
 
-            services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
+            services.AddLocalization(opt => { opt.ResourcesPath = ""; });
             services.Configure<RequestLocalizationOptions>(options =>
             {
                 List<CultureInfo> supportedCultures = new List<CultureInfo> {

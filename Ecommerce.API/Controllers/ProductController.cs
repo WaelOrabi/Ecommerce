@@ -8,7 +8,7 @@ namespace Ecommerce.API.Controllers
 {
 
     [ApiController]
-    // [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ProductController : AppControllerBase
     {
         private readonly IProductService _productService;
@@ -31,7 +31,7 @@ namespace Ecommerce.API.Controllers
             return NewResult(result);
         }
 
-        // [Authorize(policy: "Admins")]
+
         [HttpPost(Router.ProductRouting.Create)]
         public async Task<IActionResult> AddProduct([FromForm] ProductRequest productRequest)
         {
@@ -43,7 +43,7 @@ namespace Ecommerce.API.Controllers
         }
 
         [HttpPut(Router.ProductRouting.Update)]
-        //  [Authorize(policy: "Admins")]
+
         public async Task<IActionResult> UpdateProduct([FromRoute] int id, [FromForm] ProductRequest productRequest)
         {
             var result = await _productService.Update(productRequest, id);
@@ -52,7 +52,7 @@ namespace Ecommerce.API.Controllers
 
         }
         [HttpDelete(Router.ProductRouting.Delete)]
-        //[Authorize(policy: "Admins")]
+
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var result = await _productService.Delete(id);

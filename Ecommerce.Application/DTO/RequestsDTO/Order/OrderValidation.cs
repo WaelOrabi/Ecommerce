@@ -1,5 +1,7 @@
 ﻿using Ecommerce.Application.Resources;
+using Ecommerce.Domain.Entities.Identity;
 using FluentValidation;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 
 namespace Ecommerce.Application.DTO.RequestsDTO.Order
@@ -7,7 +9,7 @@ namespace Ecommerce.Application.DTO.RequestsDTO.Order
     public class OrderValidation : AbstractValidator<OrderRequest>
     {
         private readonly IStringLocalizer<SharedResources> _localizer;
-        // private readonly IAccountService _accountService;
+        private readonly UserManager<User> _accountService;
 
         public OrderValidation(IStringLocalizer<SharedResources> localizer)
         {

@@ -36,5 +36,15 @@
         public const string MaxLengthIs100 = "MaxLengthIs100";
         public const string EmailIsNotExist = "EmailIsNotExist";
         public const string FailedToUpdateEmailConfirmed = "FailedToUpdateEmailConfirmed";
+        public const string IsExist = "IsExist";
+        public const string RoleUsed = "RoleUsed";
+        public const string RoleNotFound = "RoleNotFound";
+        public const string UserNotFound = "UserNotFound";
+        public const string FailedToUpdateUserClaims = "FailedToUpdateUserClaims";
+        public const string FailedToAddNewClaims = "FailedToAddNewClaims";
+        public const string FailedToRemoveOldClaims = "FailedToRemoveOldClaims";
+        public const string FailedToRemoveOldRoles = "FailedToRemoveOldRoles";
+        public const string FailedToAddNewRoles = "FailedToAddNewRoles";
+        public const string FailedToUpdateUserRoles = "FailedToUpdateUserRoles";
     }
 }

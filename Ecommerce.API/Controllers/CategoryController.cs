@@ -8,20 +8,20 @@ namespace Ecommerce.API.Controllers
 {
 
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CategoryController(ICategoryService categoryService) : AppControllerBase
     {
 
 
         [HttpPost(Router.CategoryRouting.Create)]
-        [Authorize(policy: "Admins")]
+
         public async Task<IActionResult> AddCategory([FromBody] CategoryRequest categoryRequest)
         {
             var result = await categoryService.Add(categoryRequest);
             return NewResult(result);
         }
         [HttpPut(Router.CategoryRouting.Update)]
-        [Authorize(policy: "Admins")]
+
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryRequest categoryRequest)
         {
             var result = await categoryService.Update(categoryRequest, id);
@@ -44,7 +44,7 @@ namespace Ecommerce.API.Controllers
             return NewResult(result);
         }
         [HttpDelete(Router.CategoryRouting.Delete)]
-        [Authorize(policy: "Admins")]
+
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var result = await categoryService.Delete(id);

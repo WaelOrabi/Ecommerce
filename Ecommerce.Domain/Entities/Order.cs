@@ -1,5 +1,5 @@
 ﻿using Ecommerce.Domain.Entities.Identity;
-using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ecommerce.Domain.Entities
 {
@@ -12,7 +12,7 @@ namespace Ecommerce.Domain.Entities
 
 
         public int UserId { get; set; }
-        [JsonIgnore]
+        [ForeignKey("UserId")]
         public User User { get; set; }
         public IEnumerable<OrderProduct> OrderProducts { get; set; }
     }
