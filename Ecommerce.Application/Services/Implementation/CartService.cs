@@ -5,25 +5,25 @@ using Ecommerce.Application.Resources;
 using Ecommerce.Application.Services.Interfaces;
 using Ecommerce.Domain.DTO.ResponsesDTO;
 using Ecommerce.Domain.Entities;
+using Ecommerce.Domain.Entities.Identity;
 using Ecommerce.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace Ecommerce.Application.Services.Implementation
 {
-    public class CartService(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<SharedResources> localizer) : ResponseHandler(localizer), ICartService
+    public class CartService(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<SharedResources> localizer, UserManager<User> userManager) : ResponseHandler(localizer), ICartService
     {
         private readonly IMapper _mapper = mapper;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
+        private readonly UserManager<User> _userManager = userManager;
 
         public async Task<Response<string>> Add(CartRequest cartRequest)
         {
-            //var account = await _unitOfWork.AccountRepository.GetByIdAsync(cartRequest.AccountId);
-            //if (account == null)
-            //{
-
-            //    return GenerateNotFoundResponse<string>();
-            //}
+            var account = await _userManager.FindByIdAsync(cartRequest.UserId.ToString());
+            if (account == null)
+                return GenerateNotFoundResponse<string>();
             var productIds = cartRequest.CartItems.Select(p => p.ProductId).ToList();
             var products = await _unitOfWork.ProductRepository.GetAllAsync(p => productIds.Contains(p.Id));
             if (products.Count != productIds.Count)

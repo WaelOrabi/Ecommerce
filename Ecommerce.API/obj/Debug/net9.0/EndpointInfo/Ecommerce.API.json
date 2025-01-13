@@ -5,61 +5,26 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Account/GetById/{id}": {
-      "get": {
-        "tags": [
-          "Account"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Account/GetAll": {
-      "get": {
-        "tags": [
-          "Account"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Account/Add": {
+    "/Api/V1/User/Create": {
       "post": {
         "tags": [
-          "Account"
+          "ApplicationUser"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountRequest"
+                "$ref": "#/components/schemas/UserRegisterRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountRequest"
+                "$ref": "#/components/schemas/UserRegisterRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountRequest"
+                "$ref": "#/components/schemas/UserRegisterRequest"
               }
             }
           }
@@ -71,37 +36,26 @@
         }
       }
     },
-    "/api/Account/Update/{id}": {
+    "/Api/V1/User/Update": {
       "put": {
         "tags": [
-          "Account"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
+          "ApplicationUser"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountRequest"
+                "$ref": "#/components/schemas/EditUserRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountRequest"
+                "$ref": "#/components/schemas/EditUserRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountRequest"
+                "$ref": "#/components/schemas/EditUserRequest"
               }
             }
           }
@@ -113,41 +67,31 @@
         }
       }
     },
-    "/api/Account/Auth": {
-      "post": {
-        "tags": [
-          "Account"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AuthAccountRequestDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AuthAccountRequestDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AuthAccountRequestDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Account/Delete/{id}": {
+    "/Api/V1/User/{id}": {
       "delete": {
         "tags": [
-          "Account"
+          "ApplicationUser"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "ApplicationUser"
         ],
         "parameters": [
           {
@@ -167,16 +111,35 @@
         }
       }
     },
-    "/api/Address/Get/{id}": {
+    "/Api/V1/User/List": {
       "get": {
         "tags": [
-          "Address"
+          "ApplicationUser"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/User/Paginate": {
+      "get": {
+        "tags": [
+          "ApplicationUser"
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -190,38 +153,32 @@
         }
       }
     },
-    "/api/Address/GetAll": {
-      "get": {
-        "tags": [
-          "Address"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Address/Add": {
+    "/Api/V1/Authentication/SigIn": {
       "post": {
         "tags": [
-          "Address"
+          "Authentication"
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/AddressRequestDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddressRequestDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddressRequestDTO"
+                "type": "object",
+                "properties": {
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Email": {
+                  "style": "form"
+                },
+                "Password": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -233,37 +190,122 @@
         }
       }
     },
-    "/api/Address/Update/{id}": {
+    "/Api/V1/Authentication/Refresh-Token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RefreshToken": {
+                    "type": "string"
+                  },
+                  "AccessToken": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "RefreshToken": {
+                  "style": "form"
+                },
+                "AccessToken": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Authentication/Validate-Token": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "Token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Authorization/Role/Create": {
+      "post": {
+        "tags": [
+          "Authorization"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "NameRole": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "NameRole": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Authorization/Role/Update": {
       "put": {
         "tags": [
-          "Address"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
+          "Authorization"
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/AddressRequestDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddressRequestDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddressRequestDTO"
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -275,10 +317,10 @@
         }
       }
     },
-    "/api/Address/Delete/{id}": {
+    "/Api/V1/Authorization/Role/Delete/{id}": {
       "delete": {
         "tags": [
-          "Address"
+          "Authorization"
         ],
         "parameters": [
           {
@@ -298,8 +340,172 @@
         }
       }
     },
-    "/api/Cart/Get/{id}": {
+    "/Api/V1/Authorization/Role/Get-By-Id/{id}": {
       "get": {
+        "tags": [
+          "Authorization"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Authorization/Role/List": {
+      "get": {
+        "tags": [
+          "Authorization"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Authorization/Role/Manage-User-Roles/{userId}": {
+      "get": {
+        "tags": [
+          "Authorization"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Authorization/Role/Update-User-Roles": {
+      "put": {
+        "tags": [
+          "Authorization"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRolesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRolesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRolesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Authorization/Role/Manage-User-Claims/{userId}": {
+      "get": {
+        "tags": [
+          "Authorization"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Authorization/Role/Update-User-Claims": {
+      "put": {
+        "tags": [
+          "Authorization"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserClaimsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserClaimsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserClaimsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Cart/{id}": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
         "tags": [
           "Cart"
         ],
@@ -321,7 +527,7 @@
         }
       }
     },
-    "/api/Cart/GetAll": {
+    "/Api/V1/Cart/List": {
       "get": {
         "tags": [
           "Cart"
@@ -333,7 +539,7 @@
         }
       }
     },
-    "/api/Cart/Add": {
+    "/Api/V1/Cart/Create": {
       "post": {
         "tags": [
           "Cart"
@@ -342,17 +548,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CartRequestDTO"
+                "$ref": "#/components/schemas/CartRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CartRequestDTO"
+                "$ref": "#/components/schemas/CartRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CartRequestDTO"
+                "$ref": "#/components/schemas/CartRequest"
               }
             }
           }
@@ -364,7 +570,7 @@
         }
       }
     },
-    "/api/Cart/Update/{id}": {
+    "/Api/V1/Cart/Update": {
       "put": {
         "tags": [
           "Cart"
@@ -372,8 +578,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -384,17 +589,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CartRequestDTO"
+                "$ref": "#/components/schemas/CartRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CartRequestDTO"
+                "$ref": "#/components/schemas/CartRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CartRequestDTO"
+                "$ref": "#/components/schemas/CartRequest"
               }
             }
           }
@@ -406,30 +611,7 @@
         }
       }
     },
-    "/api/Cart/Delete/{id}": {
-      "delete": {
-        "tags": [
-          "Cart"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Category/Add": {
+    "/Api/V1/Category/Create": {
       "post": {
         "tags": [
           "Category"
@@ -438,17 +620,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryRequestDTO"
+                "$ref": "#/components/schemas/CategoryRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryRequestDTO"
+                "$ref": "#/components/schemas/CategoryRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryRequestDTO"
+                "$ref": "#/components/schemas/CategoryRequest"
               }
             }
           }
@@ -460,7 +642,7 @@
         }
       }
     },
-    "/api/Category/Update/{id}": {
+    "/Api/V1/Category/Update": {
       "put": {
         "tags": [
           "Category"
@@ -468,8 +650,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -480,17 +661,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryRequestDTO"
+                "$ref": "#/components/schemas/CategoryRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryRequestDTO"
+                "$ref": "#/components/schemas/CategoryRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CategoryRequestDTO"
+                "$ref": "#/components/schemas/CategoryRequest"
               }
             }
           }
@@ -502,7 +683,7 @@
         }
       }
     },
-    "/api/Category/Get/{id}": {
+    "/Api/V1/Category/{id}": {
       "get": {
         "tags": [
           "Category"
@@ -523,21 +704,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/Category/GetAll": {
-      "get": {
-        "tags": [
-          "Category"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Category/Delete/{id}": {
+      },
       "delete": {
         "tags": [
           "Category"
@@ -560,7 +727,19 @@
         }
       }
     },
-    "/api/Order/Get/{id}": {
+    "/Api/V1/Category/List": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Order/{id}": {
       "get": {
         "tags": [
           "Order"
@@ -581,94 +760,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/Order/GetAll": {
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Order/Add": {
-      "post": {
-        "tags": [
-          "Order"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderRequestDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderRequestDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderRequestDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Order/Update/{id}": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderRequestDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderRequestDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderRequestDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Order/Delete/{id}": {
+      },
       "delete": {
         "tags": [
           "Order"
@@ -691,8 +783,113 @@
         }
       }
     },
-    "/api/Product/Get/{id}": {
+    "/Api/V1/Order/List": {
       "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Order/Create": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Order/Update": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Api/V1/Product/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
         "tags": [
           "Product"
         ],
@@ -714,7 +911,7 @@
         }
       }
     },
-    "/api/Product/GetAll": {
+    "/Api/V1/Product/List": {
       "get": {
         "tags": [
           "Product"
@@ -726,7 +923,7 @@
         }
       }
     },
-    "/api/Product/Add": {
+    "/Api/V1/Product/Create": {
       "post": {
         "tags": [
           "Product"
@@ -755,9 +952,18 @@
                     "type": "string",
                     "format": "date-time"
                   },
-                  "Image": {
-                    "type": "string",
-                    "format": "binary"
+                  "Files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "FileDescriptions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   },
                   "CategoryId": {
                     "type": "integer",
@@ -781,7 +987,10 @@
                 "CreateAt": {
                   "style": "form"
                 },
-                "Image": {
+                "Files": {
+                  "style": "form"
+                },
+                "FileDescriptions": {
                   "style": "form"
                 },
                 "CategoryId": {
@@ -798,7 +1007,7 @@
         }
       }
     },
-    "/api/Product/Update/{id}": {
+    "/Api/V1/Product/Update": {
       "put": {
         "tags": [
           "Product"
@@ -838,9 +1047,18 @@
                     "type": "string",
                     "format": "date-time"
                   },
-                  "Image": {
-                    "type": "string",
-                    "format": "binary"
+                  "Files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "FileDescriptions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   },
                   "CategoryId": {
                     "type": "integer",
@@ -864,7 +1082,10 @@
                 "CreateAt": {
                   "style": "form"
                 },
-                "Image": {
+                "Files": {
+                  "style": "form"
+                },
+                "FileDescriptions": {
                   "style": "form"
                 },
                 "CategoryId": {
@@ -874,160 +1095,6 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Product/Delete/{id}": {
-      "delete": {
-        "tags": [
-          "Product"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Role/Get/{id}": {
-      "get": {
-        "tags": [
-          "Role"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Role/GetAll": {
-      "get": {
-        "tags": [
-          "Role"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Role/Add": {
-      "post": {
-        "tags": [
-          "Role"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleRequestDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleRequestDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleRequestDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Role/Update/{id}": {
-      "put": {
-        "tags": [
-          "Role"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleRequestDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleRequestDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleRequestDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Role/Delete/{id}": {
-      "delete": {
-        "tags": [
-          "Role"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1038,85 +1105,7 @@
   },
   "components": {
     "schemas": {
-      "AccountRequest": {
-        "type": "object",
-        "properties": {
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          },
-          "roleId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "addressId": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "AddressRequestDTO": {
-        "type": "object",
-        "properties": {
-          "street": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "state": {
-            "type": "string",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "nullable": true
-          },
-          "postalCode": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AuthAccountRequestDTO": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CartItemRequestDTO": {
+      "CartItemRequest": {
         "type": "object",
         "properties": {
           "productId": {
@@ -1130,24 +1119,24 @@
         },
         "additionalProperties": false
       },
-      "CartRequestDTO": {
+      "CartRequest": {
         "type": "object",
         "properties": {
-          "accountId": {
+          "userId": {
             "type": "integer",
             "format": "int32"
           },
           "cartItems": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CartItemRequestDTO"
+              "$ref": "#/components/schemas/CartItemRequest"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "CategoryRequestDTO": {
+      "CategoryRequest": {
         "type": "object",
         "properties": {
           "name": {
@@ -1161,7 +1150,41 @@
         },
         "additionalProperties": false
       },
-      "OrderProductRequestDTO": {
+      "EditUserRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderProductRequest": {
         "type": "object",
         "properties": {
           "productId": {
@@ -1175,7 +1198,7 @@
         },
         "additionalProperties": false
       },
-      "OrderRequestDTO": {
+      "OrderRequest": {
         "type": "object",
         "properties": {
           "accountId": {
@@ -1185,17 +1208,109 @@
           "orderProducts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/OrderProductRequestDTO"
+              "$ref": "#/components/schemas/OrderProductRequest"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "RoleRequestDTO": {
+      "RoleUserRequest": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "hasRole": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateUserClaimsRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userClaims": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserClaimsRequest"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateUserRolesRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleUserRequest"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserClaimsRequest": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRegisterRequest": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
             "type": "string",
             "nullable": true
           }

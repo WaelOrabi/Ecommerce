@@ -5,12 +5,14 @@ using Ecommerce.Application.DTO.RequestsDTO.ApplicationUser.GetListUsersPaginate
 using Ecommerce.Application.DTO.RequestsDTO.ApplicationUser.GetUserById;
 using Ecommerce.Application.DTO.RequestsDTO.ApplicationUser.RegisterUser;
 using Ecommerce.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers
 {
 
     [ApiController]
+    [Authorize()]
     public class ApplicationUserController : AppControllerBase
     {
         private readonly IApplicationUserService _applicationUserService;
@@ -19,13 +21,14 @@ namespace Ecommerce.API.Controllers
             _applicationUserService = applicationUserService;
         }
         [HttpPost(Router.ApplicationUserRouting.Create)]
+        [AllowAnonymous()]
         public async Task<IActionResult> Add(UserRegisterRequest userRegisterRequest)
         {
             var result = await _applicationUserService.RegisterUser(userRegisterRequest);
             return NewResult(result);
         }
         [HttpPut(Router.ApplicationUserRouting.Update)]
-        //  [Authorize]
+
 
         public async Task<ActionResult> Update(EditUserRequest editUserRequest)
         {
@@ -34,7 +37,7 @@ namespace Ecommerce.API.Controllers
             return NewResult(result);
         }
         [HttpDelete(Router.ApplicationUserRouting.Delete)]
-        //  [Authorize(Policy = "Admins")]
+
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _applicationUserService.DeleteUser(new DeleteUserRequest() { Id = id });

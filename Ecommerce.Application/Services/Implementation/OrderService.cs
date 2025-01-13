@@ -5,23 +5,26 @@ using Ecommerce.Application.DTO.RequestsDTO.Order;
 using Ecommerce.Application.Resources;
 using Ecommerce.Domain.DTO.ResponsesDTO;
 using Ecommerce.Domain.Entities;
+using Ecommerce.Domain.Entities.Identity;
 using Ecommerce.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace Ecommerce.Application.Services.Implementation
 {
-    public class OrderService(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<SharedResources> localizer) : ResponseHandler(localizer), IOrderService
+    public class OrderService(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<SharedResources> localizer, UserManager<User> userManager) : ResponseHandler(localizer), IOrderService
     {
         private readonly IMapper _mapper = mapper;
         private readonly IStringLocalizer<SharedResources> _localizer = localizer;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
+        private readonly UserManager<User> _userManager = userManager;
 
         public async Task<Response<string>> Add(OrderRequest orderRequest)
         {
-            //var account = await _unitOfWork.AccountRepository.GetByIdAsync(orderRequest.AccountId);
-            //if (account == null)
-            //    return GenerateNotFoundResponse<string>();
+            var account = await _userManager.FindByIdAsync(orderRequest.AccountId.ToString());
+            if (account == null)
+                return GenerateNotFoundResponse<string>();
             var productIds = orderRequest.OrderProducts.Select(p => p.ProductId).ToList();
             var products = await unitOfWork.ProductRepository.GetAllAsync(p => productIds.Contains(p.Id));
             if (products.Count != productIds.Count)
@@ -38,6 +41,7 @@ namespace Ecommerce.Application.Services.Implementation
             order.TotalPrice = totalPrice;
             order.NumberProducts = numberProducts;
             order.CreateAt = DateTime.Now;
+            order.UserId = account.Id;
             await unitOfWork.OrderRepository.AddAsync(order);
             await unitOfWork.CompleteAsync();
             return GenerateCreatedResponse("");
