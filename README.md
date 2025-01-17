@@ -1,6 +1,3 @@
-Based on the folder structure and files in your project as seen in the images, here's a tailored README draft for your **E-Commerce System API**:
-
----
 
 # E-Commerce System API
 
